@@ -12,6 +12,7 @@ export interface Automation {
   timeEstimate: string;
   buttonText: string;
   categoryColor: string;
+  image: string;
 }
 
 export const automations: Automation[] = [
@@ -26,7 +27,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-green-500/10',
     executionsCount: '1 987 exécutions',
     timeEstimate: '1 à 6 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/email-automation.jpg'
   },
   {
     id: 'invoice-extraction',
@@ -39,7 +41,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-blue-500/10',
     executionsCount: '987 exécutions',
     timeEstimate: '3 à 9 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/document-generation.jpg'
   },
   {
     id: 'social-media',
@@ -52,7 +55,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-pink-500/10',
     executionsCount: '1 074 exécutions',
     timeEstimate: '4 à 10 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/social-media.jpg'
   },
   {
     id: 'whatsapp-agent',
@@ -65,7 +69,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-green-500/10',
     executionsCount: '1 196 exécutions',
     timeEstimate: '1 à 2 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/chatbot-ai.jpg'
   },
   {
     id: 'automated-reports',
@@ -78,7 +83,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-purple-500/10',
     executionsCount: '2 895 exécutions',
     timeEstimate: '5 à 9 jours',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/data-analysis.jpg'
   },
   {
     id: 'booking-system',
@@ -91,7 +97,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-indigo-500/10',
     executionsCount: '678 exécutions',
     timeEstimate: '3 à 22 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/crm-sync.jpg'
   },
   {
     id: 'website-monitoring',
@@ -104,7 +111,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-cyan-500/10',
     executionsCount: '2 284 exécutions',
     timeEstimate: '1 à 3 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/backup-automation.jpg'
   },
   {
     id: 'support-automation',
@@ -117,7 +125,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-orange-500/10',
     executionsCount: '1 102 exécutions',
     timeEstimate: '5 à 9 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/chatbot-ai.jpg'
   },
   {
     id: 'contact-sync',
@@ -130,7 +139,8 @@ export const automations: Automation[] = [
     categoryColor: 'bg-blue-500/10',
     executionsCount: '2 487 exécutions',
     timeEstimate: '1 à 11 minutes',
-    buttonText: 'Tester l\'automatisation'
+    buttonText: 'Tester l\'automatisation',
+    image: '/src/assets/automations/lead-nurturing.jpg'
   },
   {
     id: 'visual-content',
@@ -143,6 +153,7 @@ export const automations: Automation[] = [
     categoryColor: 'bg-purple-500/10',
     executionsCount: '6 413 exécutions',
     timeEstimate: '8 à 25 minutes',
-    buttonText: 'Ouvrir la formule'
+    buttonText: 'Ouvrir la formule',
+    image: '/src/assets/automations/payment-automation.jpg'
   }
 ];

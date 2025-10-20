@@ -11,6 +11,7 @@ export interface Application {
   iconColor: string;
   categoryColor: string;
   buttonText: string;
+  image: string;
 }
 
 export const applications: Application[] = [
@@ -24,7 +25,8 @@ export const applications: Application[] = [
     icon: Share2,
     iconColor: "text-blue-500",
     categoryColor: "bg-blue-500/10",
-    buttonText: "Voir le projet"
+    buttonText: "Voir le projet",
+    image: "/src/assets/applications/postelma.jpg"
   },
   {
     id: 2,
@@ -36,7 +38,8 @@ export const applications: Application[] = [
     icon: MessageCircle,
     iconColor: "text-green-500",
     categoryColor: "bg-green-500/10",
-    buttonText: "Voir le projet"
+    buttonText: "Voir le projet",
+    image: "/src/assets/applications/support-hub.jpg"
   },
   {
     id: 3,
@@ -48,7 +51,8 @@ export const applications: Application[] = [
     icon: Target,
     iconColor: "text-purple-500",
     categoryColor: "bg-purple-500/10",
-    buttonText: "Voir le projet"
+    buttonText: "Voir le projet",
+    image: "/src/assets/applications/crm-ai.jpg"
   },
   {
     id: 4,
@@ -60,6 +64,7 @@ export const applications: Application[] = [
     icon: Mic,
     iconColor: "text-cyan-500",
     categoryColor: "bg-cyan-500/10",
-    buttonText: "Voir le projet"
+    buttonText: "Voir le projet",
+    image: "/src/assets/applications/podcast-ai.jpg"
   }
 ];

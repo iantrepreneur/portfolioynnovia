@@ -12,8 +12,16 @@ export const ApplicationCard = ({ application }: ApplicationCardProps) => {
   const Icon = application.icon;
   
   return (
-    <Card className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-primary/50 hover:-translate-y-1 flex flex-col h-full">
-      <div className="flex flex-col h-full">
+    <Card className="group bg-card rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-primary/50 hover:-translate-y-1 flex flex-col h-full">
+      <div className="relative w-full h-56 overflow-hidden">
+        <img 
+          src={application.image} 
+          alt={application.name}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"></div>
+      </div>
+      <div className="flex flex-col h-full p-8">
         <div className="mb-6 flex-1">
           <div className="flex items-start justify-between mb-4">
             <div className={`inline-flex p-4 rounded-2xl ${application.categoryColor} group-hover:scale-110 transition-transform duration-300`}>
