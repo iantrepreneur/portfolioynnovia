@@ -2,7 +2,10 @@ import { Zap, Clock, Users, TrendingUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from './ThemeToggle';
 import { AutomationCard } from './AutomationCard';
+import { ApplicationCard } from './ApplicationCard';
 import { automations } from '@/data/automations';
+import { applications } from '@/data/applications';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ynnoviaLogo from '@/assets/ynnovia-logo.png';
 
 export const SorareBasicLanding = () => {
@@ -119,22 +122,60 @@ export const SorareBasicLanding = () => {
           </div>
         </section>
 
-        {/* Automations Section */}
+        {/* Tabs Section */}
         <section className="mb-24">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-              Nos Automatisations Intelligentes
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Découvrez comment Ynnovia optimise les processus métier avec des automatisations intelligentes et robustes
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {automations.map(automation => (
-              <AutomationCard key={automation.id} automation={automation} />
-            ))}
-          </div>
+          <Tabs defaultValue="automations" className="w-full">
+            <div className="text-center mb-8">
+              <TabsList className="inline-flex h-14 items-center justify-center rounded-2xl bg-card/50 backdrop-blur-md p-1.5 border border-border/50 shadow-lg mb-6">
+                <TabsTrigger 
+                  value="automations" 
+                  className="rounded-xl px-8 py-3 text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all duration-300"
+                >
+                  Automatisations
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="applications"
+                  className="rounded-xl px-8 py-3 text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all duration-300"
+                >
+                  Applications
+                </TabsTrigger>
+              </TabsList>
+            </div>
+
+            <TabsContent value="automations" className="mt-0 animate-fade-in">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+                  Nos Automatisations Intelligentes
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  Découvrez comment Ynnovia optimise les processus métier avec des automatisations intelligentes et robustes
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                {automations.map(automation => (
+                  <AutomationCard key={automation.id} automation={automation} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="applications" className="mt-0 animate-fade-in">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+                  Nos Applications Complètes
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  Découvrez nos plateformes complètes développées avec les technologies les plus avancées
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                {applications.map(application => (
+                  <ApplicationCard key={application.id} application={application} />
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
         </section>
 
         {/* CTA Section */}
