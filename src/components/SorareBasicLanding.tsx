@@ -1,272 +1,162 @@
-import { Twitter, Mic, Heart, Youtube, Home, BookOpen } from 'lucide-react';
-import { ToolCard } from './ToolCard';
+import { Zap, Clock, Users, TrendingUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { ThemeToggle } from './ThemeToggle';
-import { LazyMatchCalendar } from './LazyMatchCalendar';
-import { tools } from '@/data/tools';
-import { useState, useEffect } from 'react';
+import { AutomationCard } from './AutomationCard';
+import { automations } from '@/data/automations';
+import ynnoviaLogo from '@/assets/ynnovia-logo.png';
+
 export const SorareBasicLanding = () => {
-  const [favorites, setFavorites] = useState<string[]>([]);
-
-  // Load favorites from localStorage on mount
-  useEffect(() => {
-    const savedFavorites = localStorage.getItem('sorare-favorites');
-    if (savedFavorites) {
-      try {
-        setFavorites(JSON.parse(savedFavorites));
-      } catch {
-        // If parsing fails, use empty array
-        setFavorites([]);
-      }
-    }
-  }, []);
-
-  // Save favorites to localStorage whenever favorites change
-  useEffect(() => {
-    localStorage.setItem('sorare-favorites', JSON.stringify(favorites));
-  }, [favorites]);
-
-  // Toggle favorite status
-  const toggleFavorite = (toolName: string) => {
-    setFavorites(prev => {
-      if (prev.includes(toolName)) {
-        return prev.filter(name => name !== toolName);
-      } else {
-        return [...prev, toolName];
-      }
-    });
-  };
-
-  // Sort tools: favorites first, then the rest
-  const sortedTools = [...tools].sort((a, b) => {
-    const aIsFavorite = favorites.includes(a.name);
-    const bIsFavorite = favorites.includes(b.name);
-    if (aIsFavorite && !bIsFavorite) return -1;
-    if (!aIsFavorite && bIsFavorite) return 1;
-    return 0; // Keep original order within each group
-  });
-  return <div className="min-h-screen bg-background">
+  return (
+    <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center gap-6">
-              <Button variant="ghost" size="lg" className="gap-2 font-medium">
-                <Home size={18} />
-                Home
-              </Button>
-              <Link to="/beginners-guide">
-                <Button variant="ghost" size="lg" className="gap-2 font-medium hover:bg-accent">
-                  <BookOpen size={18} />
-                  Beginners Guide
-                </Button>
-              </Link>
+            <div className="flex items-center gap-3">
+              <img src={ynnoviaLogo} alt="Ynnovia" className="h-8" />
             </div>
-            <ThemeToggle />
+            <div className="flex items-center gap-4">
+              <Button variant="outline" size="lg" className="rounded-xl font-medium">
+                Voir les Démonstrations
+              </Button>
+              <Button size="lg" className="rounded-xl font-medium">
+                Consultation Gratuite
+              </Button>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </nav>
       
       <div className="container mx-auto px-6 lg:px-8">
         {/* Hero Section */}
-        <header className="text-center pt-20 pb-16 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-            <span className="bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              Sorare Basic
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-            Your go-to dashboard for all helpful Sorare tools, community resources, 
-            and expert insights neatly organized in one place.
-          </p>
-        </header>
-
-        {/* Essential Sorare Tools */}
-        <section className="mb-24">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-foreground">
-            Essential Sorare Tools
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {sortedTools.map(tool => <ToolCard key={tool.name} name={tool.name} description={tool.description} url={tool.url} icon={tool.icon} iconColor={tool.iconColor} comingSoon={tool.comingSoon} isSupport={tool.isSupport} isFavorite={favorites.includes(tool.name)} onToggleFavorite={toggleFavorite} />)}
+        <header className="text-center pt-20 pb-16 max-w-5xl mx-auto">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+            <Zap className="w-4 h-4" />
+            Automatisations Intelligentes
           </div>
-        </section>
-
-        {/* Community Content Section */}
-        <section className="mb-24 max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-foreground">
-            Sorare Community Content
-          </h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {/* DoppelDNP */}
-            <div className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border hover:-translate-y-1">
-              <div className="flex flex-col h-full">
-                <div className="mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-green-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Mic className="w-8 h-8 text-green-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    DoppelDNP 🇩🇪
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    The first German Sorare Podcast! Weekly episodes about our favorite Fantasy Football game.
-                  </p>
-                </div>
-                <div className="mt-auto">
-                  <a href="https://open.spotify.com/show/1DW05peAwO2kQklg4pbIc4?si=L_bciPv9R-SV3l_uqvdH-w&nd=1&dlsi=3df838f676384af4" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md">
-                    Listen on Spotify
-                  </a>
-                </div>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
+            Transformez vos <span className="bg-gradient-to-r from-primary via-blue-500 to-cyan-500 bg-clip-text text-transparent">Processus</span>
+            <br />avec l'Automatisation
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light mb-8">
+            Découvrez comment Ynnovia optimise les flux de travail avec des automatisations sur mesure, robustes et scalables pour votre entreprise.
+          </p>
+          
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+            <Button size="lg" className="rounded-xl font-medium gap-2">
+              Voir les Démonstrations
+              <TrendingUp className="w-4 h-4" />
+            </Button>
+            <Button variant="outline" size="lg" className="rounded-xl font-medium">
+              Consultation Gratuite
+            </Button>
+          </div>
+          
+          {/* Trust Indicators */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-border/50">
+            <div className="flex items-center justify-center gap-3">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Zap className="w-5 h-5 text-primary" />
               </div>
+              <span className="text-sm font-medium text-muted-foreground">100% Sans Code</span>
             </div>
-
-            {/* NoTime Sorare */}
-            <div className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border hover:-translate-y-1">
-              <div className="flex flex-col h-full">
-                <div className="mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-red-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Youtube className="w-8 h-8 text-red-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    NoTime Sorare 🇩🇪
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    German Sorare content with insights, strategies and weekly updates.
-                  </p>
-                </div>
-                <div className="mt-auto">
-                  <a href="https://www.youtube.com/@NoTimeW3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md">
-                    Watch on YouTube
-                  </a>
-                </div>
+            <div className="flex items-center justify-center gap-3">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Users className="w-5 h-5 text-primary" />
               </div>
+              <span className="text-sm font-medium text-muted-foreground">Intégrations Multiples</span>
             </div>
-
-            {/* Quinny */}
-            <div className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border hover:-translate-y-1">
-              <div className="flex flex-col h-full">
-                <div className="mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-red-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Youtube className="w-8 h-8 text-red-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    Quinny 🇬🇧
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    One of the most well-known Sorare creators. Lineups, challenges and weekly content.
-                  </p>
-                </div>
-                <div className="mt-auto">
-                  <a href="https://www.youtube.com/c/Quinny3001" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md">
-                    Watch on YouTube
-                  </a>
-                </div>
+            <div className="flex items-center justify-center gap-3">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Clock className="w-5 h-5 text-primary" />
               </div>
+              <span className="text-sm font-medium text-muted-foreground">Support 24/7</span>
             </div>
-
-            {/* Harry Trades */}
-            <div className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border hover:-translate-y-1">
-              <div className="flex flex-col h-full">
-                <div className="mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-red-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Youtube className="w-8 h-8 text-red-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    Harry Trades 🇬🇧
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Deep dives into Sorare strategies, scouting tips and trading approaches.
-                  </p>
-                </div>
-                <div className="mt-auto">
-                  <a href="https://www.youtube.com/@HarryTrades" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md">
-                    Watch on YouTube
-                  </a>
-                </div>
+          </div>
+        </header>
+        
+        {/* Stats Section */}
+        <section className="mb-24 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center p-8 rounded-3xl bg-card border border-border/50">
+              <div className="inline-flex p-4 rounded-2xl bg-primary/10 mb-4">
+                <Zap className="w-8 h-8 text-primary" />
               </div>
+              <div className="text-4xl font-bold text-foreground mb-2">150+</div>
+              <div className="text-sm text-muted-foreground">Automatisations Créées</div>
+              <div className="text-xs text-muted-foreground mt-1">Sur 28 projets terminés</div>
             </div>
-
-            {/* NepentheZ Sorare */}
-            <div className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border hover:-translate-y-1">
-              <div className="flex flex-col h-full">
-                <div className="mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-red-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Youtube className="w-8 h-8 text-red-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    NepentheZ Sorare 🇬🇧
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Popular YouTuber with a focus on Fantasy sports and Sorare guides.
-                  </p>
-                </div>
-                <div className="mt-auto">
-                  <a href="https://www.youtube.com/@FantasyNFT" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md">
-                    Watch on YouTube
-                  </a>
-                </div>
+            
+            <div className="text-center p-8 rounded-3xl bg-card border border-border/50">
+              <div className="inline-flex p-4 rounded-2xl bg-blue-500/10 mb-4">
+                <Clock className="w-8 h-8 text-blue-500" />
               </div>
+              <div className="text-4xl font-bold text-foreground mb-2">2000h</div>
+              <div className="text-sm text-muted-foreground">Temps Économisé</div>
+              <div className="text-xs text-muted-foreground mt-1">Pour nos clients</div>
             </div>
-
-            {/* proownez sorare */}
-            <div className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border hover:-translate-y-1">
-              <div className="flex flex-col h-full">
-                <div className="mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-red-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Youtube className="w-8 h-8 text-red-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    proownez sorare 🇩🇪
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    proownez mit Tipps und Tricks zu sorare!
-                  </p>
-                </div>
-                <div className="mt-auto">
-                  <a href="https://www.youtube.com/@proownezsorare" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md">
-                    Watch on YouTube
-                  </a>
-                </div>
+            
+            <div className="text-center p-8 rounded-3xl bg-card border border-border/50">
+              <div className="inline-flex p-4 rounded-2xl bg-green-500/10 mb-4">
+                <Users className="w-8 h-8 text-green-500" />
               </div>
+              <div className="text-4xl font-bold text-foreground mb-2">50+</div>
+              <div className="text-sm text-muted-foreground">Clients Satisfaits</div>
+              <div className="text-xs text-muted-foreground mt-1">Projets réussis</div>
             </div>
-
-            {/* Sorareando */}
-            <div className="group bg-card rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border hover:-translate-y-1">
-              <div className="flex flex-col h-full">
-                <div className="mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-green-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Mic className="w-8 h-8 text-green-500" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    Sorareando 🇪🇸
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Charlas sobre Sorare con la comunidad española: análisis, estrategias, mercado y fútbol.
-                  </p>
-                </div>
-                <div className="mt-auto">
-                  <a href="https://tr.ee/0-5xZS86uy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md">Listen on Spotify</a>
-                </div>
+            
+            <div className="text-center p-8 rounded-3xl bg-card border border-border/50">
+              <div className="inline-flex p-4 rounded-2xl bg-purple-500/10 mb-4">
+                <TrendingUp className="w-8 h-8 text-purple-500" />
               </div>
+              <div className="text-4xl font-bold text-foreground mb-2">99.9%</div>
+              <div className="text-sm text-muted-foreground">Fiabilité</div>
+              <div className="text-xs text-muted-foreground mt-1">Uptime garanti</div>
             </div>
           </div>
         </section>
 
-        {/* Match Calendar Section */}
-        <div className="mb-24">
-          <LazyMatchCalendar />
-        </div>
+        {/* Automations Section */}
+        <section className="mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Nos Automatisations Intelligentes
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Découvrez comment Ynnovia optimise les processus métier avec des automatisations intelligentes et robustes
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {automations.map(automation => (
+              <AutomationCard key={automation.id} automation={automation} />
+            ))}
+          </div>
+        </section>
 
-        {/* Follow us on X Section */}
+        {/* CTA Section */}
         <section className="text-center pb-24">
-          <div className="bg-card rounded-3xl p-12 shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 hover:border-border max-w-2xl mx-auto">
-            <p className="text-2xl font-semibold text-foreground mb-6">Follow us on X</p>
-            <a href="https://x.com/sorare_coach" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-14 h-14 bg-foreground hover:bg-foreground/90 text-background rounded-full transition-all duration-300 hover:scale-110 shadow-md">
-              <Twitter size={24} />
-            </a>
+          <div className="bg-gradient-to-br from-primary/10 via-blue-500/10 to-cyan-500/10 rounded-3xl p-12 shadow-sm border border-border/50 max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Prêt à Automatiser Votre Entreprise ?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Contactez-nous pour une consultation gratuite et découvrez comment nous pouvons transformer vos processus
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Button size="lg" className="rounded-xl font-medium">
+                Demander une Démo
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-xl font-medium">
+                Consultation Gratuite
+              </Button>
+            </div>
           </div>
         </section>
       </div>
-    </div>;
+    </div>
+  );
 };
