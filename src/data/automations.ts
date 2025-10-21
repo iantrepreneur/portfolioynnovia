@@ -1,4 +1,13 @@
 import { Bot, FileText, Share2, MessageCircle, BarChart3, Calendar, Globe, Headphones, Users, Sparkles } from 'lucide-react';
+import emailAutomationImg from '@/assets/automations/email-automation.jpg';
+import documentGenerationImg from '@/assets/automations/document-generation.jpg';
+import socialMediaImg from '@/assets/automations/social-media.jpg';
+import chatbotAiImg from '@/assets/automations/chatbot-ai.jpg';
+import dataAnalysisImg from '@/assets/automations/data-analysis.jpg';
+import crmSyncImg from '@/assets/automations/crm-sync.jpg';
+import backupAutomationImg from '@/assets/automations/backup-automation.jpg';
+import leadNurturingImg from '@/assets/automations/lead-nurturing.jpg';
+import paymentAutomationImg from '@/assets/automations/payment-automation.jpg';
 
 export interface Automation {
   id: string;
@@ -28,7 +37,7 @@ export const automations: Automation[] = [
     executionsCount: '1 987 exécutions',
     timeEstimate: '1 à 6 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/email-automation.jpg'
+    image: emailAutomationImg
   },
   {
     id: 'invoice-extraction',
@@ -42,7 +51,7 @@ export const automations: Automation[] = [
     executionsCount: '987 exécutions',
     timeEstimate: '3 à 9 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/document-generation.jpg'
+    image: documentGenerationImg
   },
   {
     id: 'social-media',
@@ -56,7 +65,7 @@ export const automations: Automation[] = [
     executionsCount: '1 074 exécutions',
     timeEstimate: '4 à 10 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/social-media.jpg'
+    image: socialMediaImg
   },
   {
     id: 'whatsapp-agent',
@@ -70,7 +79,7 @@ export const automations: Automation[] = [
     executionsCount: '1 196 exécutions',
     timeEstimate: '1 à 2 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/chatbot-ai.jpg'
+    image: chatbotAiImg
   },
   {
     id: 'automated-reports',
@@ -84,7 +93,7 @@ export const automations: Automation[] = [
     executionsCount: '2 895 exécutions',
     timeEstimate: '5 à 9 jours',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/data-analysis.jpg'
+    image: dataAnalysisImg
   },
   {
     id: 'booking-system',
@@ -98,7 +107,7 @@ export const automations: Automation[] = [
     executionsCount: '678 exécutions',
     timeEstimate: '3 à 22 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/crm-sync.jpg'
+    image: crmSyncImg
   },
   {
     id: 'website-monitoring',
@@ -112,7 +121,7 @@ export const automations: Automation[] = [
     executionsCount: '2 284 exécutions',
     timeEstimate: '1 à 3 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/backup-automation.jpg'
+    image: backupAutomationImg
   },
   {
     id: 'support-automation',
@@ -126,7 +135,7 @@ export const automations: Automation[] = [
     executionsCount: '1 102 exécutions',
     timeEstimate: '5 à 9 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/chatbot-ai.jpg'
+    image: chatbotAiImg
   },
   {
     id: 'contact-sync',
@@ -140,7 +149,7 @@ export const automations: Automation[] = [
     executionsCount: '2 487 exécutions',
     timeEstimate: '1 à 11 minutes',
     buttonText: 'Tester l\'automatisation',
-    image: '/src/assets/automations/lead-nurturing.jpg'
+    image: leadNurturingImg
   },
   {
     id: 'visual-content',
@@ -154,6 +163,6 @@ export const automations: Automation[] = [
     executionsCount: '6 413 exécutions',
     timeEstimate: '8 à 25 minutes',
     buttonText: 'Ouvrir la formule',
-    image: '/src/assets/automations/payment-automation.jpg'
+    image: paymentAutomationImg
   }
 ];

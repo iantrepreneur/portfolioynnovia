@@ -1,4 +1,8 @@
 import { LucideIcon, Share2, MessageCircle, Target, Mic } from 'lucide-react';
+import postelmaImg from '@/assets/applications/postelma.jpg';
+import supportHubImg from '@/assets/applications/support-hub.jpg';
+import crmAiImg from '@/assets/applications/crm-ai.jpg';
+import podcastAiImg from '@/assets/applications/podcast-ai.jpg';
 
 export interface Application {
   id: number;
@@ -26,7 +30,7 @@ export const applications: Application[] = [
     iconColor: "text-blue-500",
     categoryColor: "bg-blue-500/10",
     buttonText: "Voir le projet",
-    image: "/src/assets/applications/postelma.jpg"
+    image: postelmaImg
   },
   {
     id: 2,
@@ -39,7 +43,7 @@ export const applications: Application[] = [
     iconColor: "text-green-500",
     categoryColor: "bg-green-500/10",
     buttonText: "Voir le projet",
-    image: "/src/assets/applications/support-hub.jpg"
+    image: supportHubImg
   },
   {
     id: 3,
@@ -52,7 +56,7 @@ export const applications: Application[] = [
     iconColor: "text-purple-500",
     categoryColor: "bg-purple-500/10",
     buttonText: "Voir le projet",
-    image: "/src/assets/applications/crm-ai.jpg"
+    image: crmAiImg
   },
   {
     id: 4,
@@ -65,6 +69,6 @@ export const applications: Application[] = [
     iconColor: "text-cyan-500",
     categoryColor: "bg-cyan-500/10",
     buttonText: "Voir le projet",
-    image: "/src/assets/applications/podcast-ai.jpg"
+    image: podcastAiImg
   }
 ];
