@@ -18,12 +18,10 @@ import { useEffect, useState } from 'react';
 export const SorareBasicLanding = () => {
   const { scrollY } = useScroll();
   const [isLoading, setIsLoading] = useState(true);
-  const headerOpacity = useTransform(scrollY, [0, 100], [1, 0.8]);
-  const headerBlur = useTransform(scrollY, [0, 100], [0, 10]);
 
   useEffect(() => {
     // Loading animation
-    const timer = setTimeout(() => setIsLoading(false), 1000);
+    const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -69,10 +67,6 @@ export const SorareBasicLanding = () => {
       {/* Navigation */}
       <motion.nav
         className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50"
-        style={{
-          opacity: headerOpacity,
-          backdropFilter: useTransform(headerBlur, (v) => `blur(${v}px)`),
-        }}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, type: "spring" }}
