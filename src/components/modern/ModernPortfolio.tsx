@@ -24,14 +24,25 @@ export const ModernPortfolio = () => {
       >
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <motion.div
+            <motion.a
+              href="/"
               className="flex items-center gap-3"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <img src={ynnoviaLogo} alt="Ynnovia" className="h-8" />
-            </motion.div>
+              <motion.img 
+                src={ynnoviaLogo} 
+                alt="Ynnovia" 
+                className="h-12 w-12 object-contain"
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 10,
+                  transition: { duration: 0.3 }
+                }}
+              />
+              <span className="text-xl font-bold text-foreground">Ynnovia</span>
+            </motion.a>
             
             <motion.div
               className="flex items-center gap-6"
@@ -59,19 +70,25 @@ export const ModernPortfolio = () => {
 
       {/* Sections */}
       <HeroSection />
+      <div className="py-24" /> {/* Increased spacing */}
       <ResultsSection />
+      <div className="py-24" />
       <div id="solutions">
         <ServicesSection />
       </div>
+      <div className="py-24" />
       <div id="integration">
         <FloatingLogosSection />
       </div>
+      <div className="py-24" />
       <div id="processus">
         <ProcessSection />
       </div>
+      <div className="py-24" />
       <div id="faq">
         <FAQSection />
       </div>
+      <div className="py-24" />
       <CTASection />
 
       {/* Footer */}

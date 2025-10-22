@@ -1,32 +1,120 @@
 import { motion } from 'framer-motion';
-import {
-  Globe,
-  MessageSquare,
-  FileText,
-  Users,
-  Building2,
-  Trello,
-  Linkedin,
-  Zap,
-  Workflow,
-  Database,
-  Mail,
-  Headphones,
-} from 'lucide-react';
 
+// Real logos with official colors
 const tools = [
-  { name: 'Google Business', icon: Globe, duration: 4.2, delay: 0, x: '10%', y: '20%' },
-  { name: 'Slack', icon: MessageSquare, duration: 5.5, delay: 0.5, x: '25%', y: '15%' },
-  { name: 'Notion', icon: FileText, duration: 3.8, delay: 1, x: '45%', y: '25%' },
-  { name: 'HubSpot', icon: Users, duration: 4.8, delay: 0.3, x: '65%', y: '18%' },
-  { name: 'Salesforce', icon: Building2, duration: 5.2, delay: 0.8, x: '82%', y: '22%' },
-  { name: 'Trello', icon: Trello, duration: 4.5, delay: 0.2, x: '15%', y: '55%' },
-  { name: 'LinkedIn', icon: Linkedin, duration: 3.5, delay: 0.7, x: '32%', y: '60%' },
-  { name: 'Zapier', icon: Zap, duration: 4.0, delay: 0.4, x: '50%', y: '65%' },
-  { name: 'Make', icon: Workflow, duration: 5.0, delay: 0.9, x: '68%', y: '58%' },
-  { name: 'Airtable', icon: Database, duration: 3.3, delay: 0.6, x: '85%', y: '62%' },
-  { name: 'Microsoft 365', icon: Mail, duration: 4.7, delay: 0.1, x: '38%', y: '85%' },
-  { name: 'Zendesk', icon: Headphones, duration: 5.3, delay: 1.2, x: '60%', y: '88%' },
+  // Zone centrale (5-6 logos plus rapprochés)
+  { 
+    name: 'HubSpot', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/hubspot.svg',
+    duration: 5.2, 
+    delay: 0.3, 
+    x: '42%', 
+    y: '35%',
+    xFloat: -8,
+  },
+  { 
+    name: 'Slack', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg',
+    duration: 4.8, 
+    delay: 0.5, 
+    x: '50%', 
+    y: '42%',
+    xFloat: 6,
+  },
+  { 
+    name: 'Notion', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg',
+    duration: 5.5, 
+    delay: 0.7, 
+    x: '58%', 
+    y: '38%',
+    xFloat: -5,
+  },
+  { 
+    name: 'Salesforce', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/salesforce-2.svg',
+    duration: 4.5, 
+    delay: 0.4, 
+    x: '48%', 
+    y: '52%',
+    xFloat: 7,
+  },
+  { 
+    name: 'Trello', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/trello.svg',
+    duration: 5.8, 
+    delay: 0.6, 
+    x: '38%', 
+    y: '48%',
+    xFloat: -6,
+  },
+  
+  // Zone médiane (4 logos autour)
+  { 
+    name: 'Google Business', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/google-icon.svg',
+    duration: 6.2, 
+    delay: 0.2, 
+    x: '25%', 
+    y: '28%',
+    xFloat: 9,
+  },
+  { 
+    name: 'LinkedIn', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg',
+    duration: 5.0, 
+    delay: 0.8, 
+    x: '70%', 
+    y: '30%',
+    xFloat: -7,
+  },
+  { 
+    name: 'Zapier', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/zapier.svg',
+    duration: 4.7, 
+    delay: 0.5, 
+    x: '28%', 
+    y: '58%',
+    xFloat: 8,
+  },
+  { 
+    name: 'Airtable', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/airtable.svg',
+    duration: 5.3, 
+    delay: 0.9, 
+    x: '68%', 
+    y: '56%',
+    xFloat: -9,
+  },
+  
+  // Zone périphérique (2-3 logos externes)
+  { 
+    name: 'Make', 
+    logo: 'https://www.vectorlogo.zone/logos/make/make-icon.svg',
+    duration: 6.5, 
+    delay: 0.4, 
+    x: '15%', 
+    y: '42%',
+    xFloat: 10,
+  },
+  { 
+    name: 'Microsoft 365', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/microsoft-5.svg',
+    duration: 6.0, 
+    delay: 0.6, 
+    x: '78%', 
+    y: '45%',
+    xFloat: -10,
+  },
+  { 
+    name: 'Zendesk', 
+    logo: 'https://cdn.worldvectorlogo.com/logos/zendesk.svg',
+    duration: 5.7, 
+    delay: 1.0, 
+    x: '48%', 
+    y: '22%',
+    xFloat: 5,
+  },
 ];
 
 export const FloatingLogosSection = () => {
@@ -51,8 +139,8 @@ export const FloatingLogosSection = () => {
         {/* Floating logos cloud */}
         <div className="relative h-[600px] max-w-6xl mx-auto">
           {tools.map((tool, index) => {
-            const randomRotate = Math.random() * 4 - 2; // -2 to +2 degrees
-            const randomScale = 0.9 + Math.random() * 0.2; // 0.9 to 1.1
+            const randomRotate = Math.random() * 2 - 1; // -1 to +1 degrees (reduced)
+            const randomScale = 0.95 + Math.random() * 0.1; // 0.95 to 1.05
             
             return (
               <motion.div
@@ -71,7 +159,8 @@ export const FloatingLogosSection = () => {
                 {/* Floating animation */}
                 <motion.div
                   animate={{
-                    y: [0, -20, 0],
+                    y: [0, -15, 0], // Reduced amplitude
+                    x: [0, tool.xFloat, 0], // Natural horizontal movement
                     rotate: [randomRotate, -randomRotate, randomRotate],
                   }}
                   transition={{
@@ -85,7 +174,7 @@ export const FloatingLogosSection = () => {
                     zIndex: 50,
                     transition: { duration: 0.2 },
                   }}
-                  className="relative"
+                  className="relative will-change-transform"
                 >
                   {/* Glow effect on hover */}
                   <motion.div
@@ -97,18 +186,23 @@ export const FloatingLogosSection = () => {
                   />
 
                   {/* Card with glassmorphism */}
-                  <div className="relative bg-card/40 backdrop-blur-xl border border-border/30 rounded-2xl p-6 min-w-[140px] hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_hsl(217,91%,60%,0.3)]">
-                    {/* Icon */}
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                      className="flex justify-center mb-3"
-                    >
-                      <tool.icon className="w-8 h-8 text-primary" />
-                    </motion.div>
+                  <div className="relative bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-xl p-4 min-w-[120px] hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_hsl(217,91%,60%,0.3)] shadow-lg">
+                    {/* Logo */}
+                    <div className="flex justify-center mb-2">
+                      <img 
+                        src={tool.logo} 
+                        alt={tool.name}
+                        className="w-10 h-10 object-contain"
+                        loading="lazy"
+                        onError={(e) => {
+                          // Fallback to text if image fails to load
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
 
                     {/* Name */}
-                    <p className="text-sm font-semibold text-center text-foreground">
+                    <p className="text-xs font-semibold text-center text-gray-800">
                       {tool.name}
                     </p>
                   </div>
