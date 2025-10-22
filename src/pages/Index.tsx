@@ -1,7 +1,7 @@
-import { SorareBasicLanding } from '@/components/SorareBasicLanding';
+import { ModernPortfolio } from '@/components/modern/ModernPortfolio';
 
 const Index = () => {
-  return <SorareBasicLanding />;
+  return <ModernPortfolio />;
 };
 
 export default Index;
