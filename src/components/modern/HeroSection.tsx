@@ -94,6 +94,7 @@ export const HeroSection = () => {
             <MagneticButton
               size="lg"
               className="rounded-full px-8 py-6 text-lg font-semibold shadow-[0_0_40px_hsl(217,91%,60%,0.4)] hover:shadow-[0_0_60px_hsl(217,91%,60%,0.6)] transition-shadow"
+              onClick={() => document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Réservez votre Audit Gratuit
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -102,6 +103,7 @@ export const HeroSection = () => {
               variant="outline"
               size="lg"
               className="rounded-full px-8 py-6 text-lg font-semibold border-primary/20 hover:bg-primary/10"
+              onClick={() => document.getElementById('solutions')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Voir nos Solutions
             </MagneticButton>

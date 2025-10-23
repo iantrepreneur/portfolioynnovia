@@ -1,119 +1,119 @@
 import { motion } from 'framer-motion';
 
-// Real logos with official colors
+// Real logos with official colors - organized in 3 rows
 const tools = [
-  // Zone centrale (5-6 logos plus rapprochés)
+  // Top row
   { 
-    name: 'HubSpot', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/hubspot.svg',
-    duration: 5.2, 
-    delay: 0.3, 
-    x: '42%', 
-    y: '35%',
-    xFloat: -8,
-  },
-  { 
-    name: 'Slack', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg',
-    duration: 4.8, 
-    delay: 0.5, 
-    x: '50%', 
-    y: '42%',
+    name: 'Google Business', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg',
+    duration: 5.5, 
+    delay: 0.2, 
+    x: '15%', 
+    y: '15%',
     xFloat: 6,
   },
   { 
-    name: 'Notion', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg',
-    duration: 5.5, 
-    delay: 0.7, 
-    x: '58%', 
-    y: '38%',
+    name: 'Zendesk', 
+    logo: 'https://www.vectorlogo.zone/logos/zendesk/zendesk-icon.svg',
+    duration: 6.2, 
+    delay: 0.4, 
+    x: '48%', 
+    y: '12%',
     xFloat: -5,
   },
   { 
-    name: 'Salesforce', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/salesforce-2.svg',
-    duration: 4.5, 
-    delay: 0.4, 
-    x: '48%', 
-    y: '52%',
+    name: 'LinkedIn', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png',
+    duration: 4.8, 
+    delay: 0.6, 
+    x: '78%', 
+    y: '18%',
     xFloat: 7,
   },
-  { 
-    name: 'Trello', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/trello.svg',
-    duration: 5.8, 
-    delay: 0.6, 
-    x: '38%', 
-    y: '48%',
-    xFloat: -6,
-  },
   
-  // Zone médiane (4 logos autour)
-  { 
-    name: 'Google Business', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/google-icon.svg',
-    duration: 6.2, 
-    delay: 0.2, 
-    x: '25%', 
-    y: '28%',
-    xFloat: 9,
-  },
-  { 
-    name: 'LinkedIn', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg',
-    duration: 5.0, 
-    delay: 0.8, 
-    x: '70%', 
-    y: '30%',
-    xFloat: -7,
-  },
-  { 
-    name: 'Zapier', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/zapier.svg',
-    duration: 4.7, 
-    delay: 0.5, 
-    x: '28%', 
-    y: '58%',
-    xFloat: 8,
-  },
-  { 
-    name: 'Airtable', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/airtable.svg',
-    duration: 5.3, 
-    delay: 0.9, 
-    x: '68%', 
-    y: '56%',
-    xFloat: -9,
-  },
-  
-  // Zone périphérique (2-3 logos externes)
+  // Center row (more dense)
   { 
     name: 'Make', 
     logo: 'https://www.vectorlogo.zone/logos/make/make-icon.svg',
+    duration: 5.0, 
+    delay: 0.3, 
+    x: '8%', 
+    y: '48%',
+    xFloat: -6,
+  },
+  { 
+    name: 'Trello', 
+    logo: 'https://www.vectorlogo.zone/logos/trello/trello-icon.svg',
     duration: 6.5, 
+    delay: 0.5, 
+    x: '22%', 
+    y: '45%',
+    xFloat: 8,
+  },
+  { 
+    name: 'Slack', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg',
+    duration: 5.8, 
+    delay: 0.7, 
+    x: '35%', 
+    y: '50%',
+    xFloat: -7,
+  },
+  { 
+    name: 'Salesforce', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg',
+    duration: 4.6, 
     delay: 0.4, 
-    x: '15%', 
-    y: '42%',
-    xFloat: 10,
+    x: '50%', 
+    y: '46%',
+    xFloat: 5,
+  },
+  { 
+    name: 'Notion', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png',
+    duration: 5.3, 
+    delay: 0.8, 
+    x: '65%', 
+    y: '52%',
+    xFloat: -8,
+  },
+  { 
+    name: 'Airtable', 
+    logo: 'https://www.vectorlogo.zone/logos/airtable/airtable-icon.svg',
+    duration: 6.0, 
+    delay: 0.6, 
+    x: '80%', 
+    y: '48%',
+    xFloat: 6,
+  },
+  
+  // Bottom row
+  { 
+    name: 'Zapier', 
+    logo: 'https://www.vectorlogo.zone/logos/zapier/zapier-icon.svg',
+    duration: 5.7, 
+    delay: 0.5, 
+    x: '18%', 
+    y: '82%',
+    xFloat: -5,
+  },
+  { 
+    name: 'HubSpot', 
+    logo: 'https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg',
+    duration: 4.9, 
+    delay: 0.7, 
+    x: '50%', 
+    y: '85%',
+    xFloat: 7,
   },
   { 
     name: 'Microsoft 365', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/microsoft-5.svg',
-    duration: 6.0, 
-    delay: 0.6, 
-    x: '78%', 
-    y: '45%',
-    xFloat: -10,
-  },
-  { 
-    name: 'Zendesk', 
-    logo: 'https://cdn.worldvectorlogo.com/logos/zendesk.svg',
-    duration: 5.7, 
-    delay: 1.0, 
-    x: '48%', 
-    y: '22%',
-    xFloat: 5,
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
+    duration: 6.3, 
+    delay: 0.9, 
+    x: '75%', 
+    y: '80%',
+    xFloat: -6,
   },
 ];
 
@@ -159,9 +159,9 @@ export const FloatingLogosSection = () => {
                 {/* Floating animation */}
                 <motion.div
                   animate={{
-                    y: [0, -15, 0], // Reduced amplitude
+                    y: [0, -12, 0], // Further reduced amplitude
                     x: [0, tool.xFloat, 0], // Natural horizontal movement
-                    rotate: [randomRotate, -randomRotate, randomRotate],
+                    rotate: [randomRotate * 0.5, -randomRotate * 0.5, randomRotate * 0.5], // Reduced rotation
                   }}
                   transition={{
                     duration: tool.duration,
@@ -185,24 +185,25 @@ export const FloatingLogosSection = () => {
                     }}
                   />
 
-                  {/* Card with glassmorphism */}
-                  <div className="relative bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-xl p-4 min-w-[120px] hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_hsl(217,91%,60%,0.3)] shadow-lg">
+                  {/* Card with dark glassmorphism */}
+                  <div className="relative bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 min-w-[140px] hover:border-blue-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.2)] shadow-lg">
                     {/* Logo */}
-                    <div className="flex justify-center mb-2">
-                      <img 
-                        src={tool.logo} 
-                        alt={tool.name}
-                        className="w-10 h-10 object-contain"
-                        loading="lazy"
-                        onError={(e) => {
-                          // Fallback to text if image fails to load
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
+                    <div className="flex justify-center mb-3">
+                      <div className="w-16 h-16 flex items-center justify-center">
+                        <img 
+                          src={tool.logo} 
+                          alt={tool.name}
+                          className="w-12 h-12 object-contain"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      </div>
                     </div>
 
                     {/* Name */}
-                    <p className="text-xs font-semibold text-center text-gray-800">
+                    <p className="text-xs font-semibold text-center text-slate-200">
                       {tool.name}
                     </p>
                   </div>
