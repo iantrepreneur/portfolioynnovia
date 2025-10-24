@@ -126,7 +126,7 @@ export const BookingSection = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 h-full">
-              <p className="text-blue-400 text-sm font-medium mb-2">Malick</p>
+              <p className="text-blue-400 text-sm font-medium mb-2">Maxence</p>
               <h3 className="text-3xl font-bold text-white mb-6">Appel de 30 minutes</h3>
               
               {/* Duration */}
