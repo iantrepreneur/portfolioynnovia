@@ -4,6 +4,7 @@ import { ResultsSection } from './ResultsSection';
 import { ServicesSection } from './ServicesSection';
 import { FloatingLogosSection } from './FloatingLogosSection';
 import { ProcessSection } from './ProcessSection';
+import { TestimonialsSection } from './TestimonialsSection';
 import { BookingSection } from './BookingSection';
 import { FAQSection } from './FAQSection';
 import { CTASection } from './CTASection';
@@ -85,6 +86,8 @@ export const ModernPortfolio = () => {
       <div id="processus">
         <ProcessSection />
       </div>
+      <div className="py-24" />
+      <TestimonialsSection />
       <div className="py-24" />
       <BookingSection />
       <div className="py-24" />
