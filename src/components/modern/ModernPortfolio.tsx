@@ -4,12 +4,13 @@ import { ResultsSection } from './ResultsSection';
 import { ServicesSection } from './ServicesSection';
 import { FloatingLogosSection } from './FloatingLogosSection';
 import { ProcessSection } from './ProcessSection';
+import { TestimonialsSection } from './TestimonialsSection';
 import { BookingSection } from './BookingSection';
 import { FAQSection } from './FAQSection';
 import { CTASection } from './CTASection';
 import { ThemeToggle } from '../ThemeToggle';
 import { motion } from 'framer-motion';
-import ynnoviaLogo from '@/assets/ynnovia-logo.png';
+import ynnoviaLogo from '@/assets/ynnovia-triangle-logo.png';
 
 export const ModernPortfolio = () => {
   return (
@@ -85,6 +86,8 @@ export const ModernPortfolio = () => {
       <div id="processus">
         <ProcessSection />
       </div>
+      <div className="py-24" />
+      <TestimonialsSection />
       <div className="py-24" />
       <BookingSection />
       <div className="py-24" />

@@ -1,119 +1,116 @@
 import { motion } from 'framer-motion';
+import { Cloud } from 'lucide-react';
 
-// Real logos with official colors - organized in 3 rows
+// Real logos with official colors - organized in circular layout around cloud
 const tools = [
-  // Top row
+  // Circle positions (12 logos around the cloud)
   { 
     name: 'Google Business', 
     logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg',
     duration: 5.5, 
-    delay: 0.2, 
-    x: '15%', 
-    y: '15%',
+    delay: 0, 
+    angle: 0, // 12 o'clock
+    radius: 280,
     xFloat: 6,
   },
   { 
-    name: 'Zendesk', 
-    logo: 'https://www.vectorlogo.zone/logos/zendesk/zendesk-icon.svg',
-    duration: 6.2, 
+    name: 'Slack', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg',
+    duration: 5.8, 
+    delay: 0.1, 
+    angle: 30, // 1 o'clock
+    radius: 280,
+    xFloat: -7,
+  },
+  { 
+    name: 'Notion', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png',
+    duration: 5.3, 
+    delay: 0.2, 
+    angle: 60, // 2 o'clock
+    radius: 280,
+    xFloat: 5,
+  },
+  { 
+    name: 'HubSpot', 
+    logo: 'https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg',
+    duration: 4.9, 
+    delay: 0.3, 
+    angle: 90, // 3 o'clock
+    radius: 280,
+    xFloat: 7,
+  },
+  { 
+    name: 'Salesforce', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg',
+    duration: 6.5, 
     delay: 0.4, 
-    x: '48%', 
-    y: '12%',
-    xFloat: -5,
+    angle: 120, // 4 o'clock
+    radius: 280,
+    xFloat: -6,
+  },
+  { 
+    name: 'Trello', 
+    logo: 'https://www.vectorlogo.zone/logos/trello/trello-icon.svg',
+    duration: 5.0, 
+    delay: 0.5, 
+    angle: 150, // 5 o'clock
+    radius: 280,
+    xFloat: 8,
   },
   { 
     name: 'LinkedIn', 
     logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png',
     duration: 4.8, 
     delay: 0.6, 
-    x: '78%', 
-    y: '18%',
-    xFloat: 7,
+    angle: 180, // 6 o'clock
+    radius: 280,
+    xFloat: -5,
   },
-  
-  // Center row (more dense)
+  { 
+    name: 'Zapier', 
+    logo: 'https://www.vectorlogo.zone/logos/zapier/zapier-icon.svg',
+    duration: 5.7, 
+    delay: 0.7, 
+    angle: 210, // 7 o'clock
+    radius: 280,
+    xFloat: 6,
+  },
   { 
     name: 'Make', 
     logo: 'https://www.vectorlogo.zone/logos/make/make-icon.svg',
     duration: 5.0, 
-    delay: 0.3, 
-    x: '8%', 
-    y: '48%',
-    xFloat: -6,
-  },
-  { 
-    name: 'Trello', 
-    logo: 'https://www.vectorlogo.zone/logos/trello/trello-icon.svg',
-    duration: 6.5, 
-    delay: 0.5, 
-    x: '22%', 
-    y: '45%',
-    xFloat: 8,
-  },
-  { 
-    name: 'Slack', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg',
-    duration: 5.8, 
-    delay: 0.7, 
-    x: '35%', 
-    y: '50%',
-    xFloat: -7,
-  },
-  { 
-    name: 'Salesforce', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg',
-    duration: 4.6, 
-    delay: 0.4, 
-    x: '50%', 
-    y: '46%',
-    xFloat: 5,
-  },
-  { 
-    name: 'Notion', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png',
-    duration: 5.3, 
     delay: 0.8, 
-    x: '65%', 
-    y: '52%',
+    angle: 240, // 8 o'clock
+    radius: 280,
     xFloat: -8,
   },
   { 
     name: 'Airtable', 
     logo: 'https://www.vectorlogo.zone/logos/airtable/airtable-icon.svg',
     duration: 6.0, 
-    delay: 0.6, 
-    x: '80%', 
-    y: '48%',
-    xFloat: 6,
-  },
-  
-  // Bottom row
-  { 
-    name: 'Zapier', 
-    logo: 'https://www.vectorlogo.zone/logos/zapier/zapier-icon.svg',
-    duration: 5.7, 
-    delay: 0.5, 
-    x: '18%', 
-    y: '82%',
-    xFloat: -5,
-  },
-  { 
-    name: 'HubSpot', 
-    logo: 'https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg',
-    duration: 4.9, 
-    delay: 0.7, 
-    x: '50%', 
-    y: '85%',
-    xFloat: 7,
+    delay: 0.9, 
+    angle: 270, // 9 o'clock
+    radius: 280,
+    xFloat: 5,
   },
   { 
     name: 'Microsoft 365', 
     logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     duration: 6.3, 
-    delay: 0.9, 
-    x: '75%', 
-    y: '80%',
+    delay: 1.0, 
+    angle: 300, // 10 o'clock
+    radius: 280,
     xFloat: -6,
+  },
+  { 
+    name: 'Zendesk', 
+    logo: 'https://www.vectorlogo.zone/logos/zendesk/zendesk-icon.svg',
+    duration: 6.2, 
+    delay: 1.1, 
+    angle: 330, // 11 o'clock
+    radius: 280,
+    xFloat: 7,
   },
 ];
 
@@ -136,11 +133,49 @@ export const FloatingLogosSection = () => {
           </p>
         </motion.div>
 
-        {/* Floating logos cloud */}
-        <div className="relative h-[600px] max-w-6xl mx-auto">
+        {/* Floating logos cloud with circular layout */}
+        <div className="relative h-[700px] max-w-5xl mx-auto flex items-center justify-center">
+          {/* Central cloud icon */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="absolute z-20"
+          >
+            <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-full p-12 shadow-2xl">
+              <Cloud className="w-24 h-24 text-white" strokeWidth={1.5} />
+            </div>
+            
+            {/* Upload arrow */}
+            <motion.div
+              animate={{
+                y: [-10, -20, -10],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -top-8 left-1/2 -translate-x-1/2"
+            >
+              <div className="text-green-400">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <path d="M12 19V5M5 12l7-7 7 7"/>
+                </svg>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Circular logos */}
           {tools.map((tool, index) => {
-            const randomRotate = Math.random() * 2 - 1; // -1 to +1 degrees (reduced)
-            const randomScale = 0.95 + Math.random() * 0.1; // 0.95 to 1.05
+            // Calculate position based on angle and radius
+            const angleRad = (tool.angle * Math.PI) / 180;
+            const x = Math.cos(angleRad) * tool.radius;
+            const y = Math.sin(angleRad) * tool.radius;
+            
+            const randomRotate = Math.random() * 2 - 1;
+            const randomScale = 0.95 + Math.random() * 0.1;
             
             return (
               <motion.div
@@ -151,17 +186,18 @@ export const FloatingLogosSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.05 }}
                 className="absolute group cursor-pointer"
                 style={{
-                  left: tool.x,
-                  top: tool.y,
+                  left: '50%',
+                  top: '50%',
+                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                   zIndex: Math.floor(Math.random() * 10),
                 }}
               >
                 {/* Floating animation */}
                 <motion.div
                   animate={{
-                    y: [0, -12, 0], // Further reduced amplitude
-                    x: [0, tool.xFloat, 0], // Natural horizontal movement
-                    rotate: [randomRotate * 0.5, -randomRotate * 0.5, randomRotate * 0.5], // Reduced rotation
+                    y: [0, -12, 0],
+                    x: [0, tool.xFloat, 0],
+                    rotate: [randomRotate * 0.5, -randomRotate * 0.5, randomRotate * 0.5],
                   }}
                   transition={{
                     duration: tool.duration,
