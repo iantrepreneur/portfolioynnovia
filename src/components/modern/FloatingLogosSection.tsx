@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 
 // Real logos with official colors - organized in 3 rows of 4
 const tools = [
@@ -172,6 +173,25 @@ export const FloatingLogosSection = () => {
             })}
           </div>
         </div>
+
+        {/* CTA Button to Calendar */}
+        <motion.div
+          className="flex justify-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <Button
+            size="lg"
+            onClick={() => document.getElementById('booking-section')?.scrollIntoView({ 
+              behavior: 'smooth' 
+            })}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+          >
+            Vérifier si vos outils actuels sont compatibles avec nos solutions IA
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
