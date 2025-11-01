@@ -23,8 +23,8 @@ const tools = [
     delay: 0.6,
   },
   { 
-    name: 'Make', 
-    logo: 'https://www.vectorlogo.zone/logos/make/make-icon.svg',
+    name: 'Teams', 
+    logo: 'https://www.vectorlogo.zone/logos/microsoft_teams/microsoft_teams-icon.svg',
     duration: 5.0, 
     delay: 0.3,
   },
