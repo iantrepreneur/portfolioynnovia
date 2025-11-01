@@ -170,7 +170,7 @@ export const BookingSection = () => {
             <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 relative">
               {/* Badge */}
               <div className="absolute -top-4 -right-4 bg-gradient-to-br from-blue-500 to-purple-600 text-white text-xs font-bold px-4 py-2 rounded-full rotate-12 shadow-lg z-10">
-                Calendrier<br/>Custom
+                Cal.com
               </div>
               
               <h3 className="text-2xl font-bold text-white mb-6">
