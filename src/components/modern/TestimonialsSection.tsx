@@ -14,7 +14,7 @@ const testimonials1: Testimonial[] = [
     role: "Directrice RH"
   },
   {
-    text: "Automatiser.AI a transformé notre gestion des leads. Nous avons doublé notre taux de conversion.",
+    text: "Ynnovia a transformé notre gestion des leads. Nous avons doublé notre taux de conversion.",
     author: "Armand G.",
     role: "Directeur des Ventes"
   },
@@ -62,7 +62,7 @@ const testimonials2: Testimonial[] = [
     role: "Responsable des Opérations"
   },
   {
-    text: "Automatiser.AI a boosté notre croissance avec des solutions IA sur mesure. En un trimestre, ROI de 300%.",
+    text: "Ynnovia a boosté notre croissance avec des solutions IA sur mesure. En un trimestre, ROI de 300%.",
     author: "Élise P.",
     role: "Directrice Générale"
   },
