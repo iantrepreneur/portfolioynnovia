@@ -29,12 +29,21 @@ export const BookingSection = () => {
 
       const Cal = (window as any).Cal;
       try {
-        Cal("init", { origin: "https://cal.com" });
-        Cal("inline", {
+        const options = {
           elementOrSelector: "#cal-inline",
-          calLink: "malick-ynnovia/30min",
+          calLink: "iantrepreneur-qjqmc6",
           config: { theme: "dark" },
-        });
+        } as const;
+
+        if (typeof Cal === "function") {
+          // Function-style API
+          Cal("inline", options);
+        } else if (Cal?.inline) {
+          // Object-style API
+          Cal.inline(options);
+        } else {
+          console.error("Cal.com embed not available on window.Cal");
+        }
       } catch (e) {
         console.error("Cal.com inline init error", e);
       }
@@ -136,6 +145,7 @@ export const BookingSection = () => {
             >
               <div
                 id="cal-inline"
+                data-cal-link="iantrepreneur-qjqmc6"
                 style={{ width: "100%", minHeight: "600px" }}
               />
             </div>
