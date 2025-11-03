@@ -4,31 +4,46 @@ import { useEffect } from 'react';
 
 export const BookingSection = () => {
   useEffect(() => {
-    const init = () => {
+    let cancelled = false;
+
+    const mount = async () => {
+      const loadScript = () =>
+        new Promise<void>((resolve) => {
+          if ((window as any).Cal) return resolve();
+          const existing = document.querySelector('script[data-cal="true"]') as HTMLScriptElement | null;
+          if (existing) {
+            existing.addEventListener('load', () => resolve(), { once: true });
+            if ((window as any).Cal) return resolve();
+            return;
+          }
+          const script = document.createElement('script');
+          script.src = 'https://app.cal.com/embed/embed.js';
+          script.async = true;
+          script.dataset.cal = 'true';
+          script.onload = () => resolve();
+          document.body.appendChild(script);
+        });
+
+      await loadScript();
+      if (cancelled) return;
+
       const Cal = (window as any).Cal;
-      if (!Cal) return;
-      // Namespace to avoid conflicts across navigations
-      Cal("init", "ynnovia", { origin: "https://cal.com" });
-      Cal.ns["ynnovia"]("inline", {
-        elementOrSelector: "#cal-inline",
-        calLink: "malick-ynnovia/30min",
-        config: { theme: "dark" }
-      });
+      try {
+        Cal("init", { origin: "https://cal.com" });
+        Cal("inline", {
+          elementOrSelector: "#cal-inline",
+          calLink: "malick-ynnovia/30min",
+          config: { theme: "dark" },
+        });
+      } catch (e) {
+        console.error("Cal.com inline init error", e);
+      }
     };
 
-    if ((window as any).Cal) {
-      init();
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://app.cal.com/embed/embed.js";
-    script.async = true;
-    script.onload = init;
-    document.body.appendChild(script);
+    mount();
 
     return () => {
-      // Keep script for SPA; just clear container content on unmount
+      cancelled = true;
       const container = document.getElementById("cal-inline");
       if (container) container.innerHTML = "";
     };
