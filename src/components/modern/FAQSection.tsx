@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     question: 'Quels sont les coûts d\'une solution IA sur mesure ?',
-    answer: 'Les coûts dépendent de vos besoins spécifiques. Nous proposons des solutions à partir de 5 000€ pour des automatisations simples, jusqu\'à 50 000€+ pour des plateformes IA complètes. Chaque projet inclut un audit gratuit pour établir un devis précis adapté à votre budget.',
+    answer: 'Les coûts dépendent de vos besoins spécifiques et de la complexité de votre projet. Nous proposons des solutions allant des automatisations simples aux plateformes IA complètes. Chaque projet inclut un audit gratuit pour établir un devis précis adapté à votre budget.',
   },
   {
     question: 'Mes données sont-elles sécurisées ?',
@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     question: 'Proposez-vous un support après la mise en ligne ?',
-    answer: 'Oui, tous nos projets incluent 3 mois de support gratuit après le déploiement. Ensuite, vous pouvez choisir un plan de maintenance mensuel (à partir de 500€/mois) incluant : support prioritaire, mises à jour, optimisations continues et nouvelles fonctionnalités.',
+    answer: 'Oui, tous nos projets incluent 3 mois de support gratuit après le déploiement. Ensuite, vous pouvez choisir un plan de maintenance mensuel incluant : support prioritaire, mises à jour, optimisations continues et nouvelles fonctionnalités.',
   },
   {
     question: 'Comment se passe l\'audit gratuit ?',
@@ -37,7 +37,7 @@ const faqs = [
   },
   {
     question: 'Travaillez-vous avec des petites entreprises ?',
-    answer: 'Absolument ! Nous avons des solutions adaptées à toutes les tailles d\'entreprises, de la startup au grand groupe. Nos forfaits commencent à 5 000€, et nous proposons des paiements échelonnés pour les PME.',
+    answer: 'Absolument ! Nous avons des solutions adaptées à toutes les tailles d\'entreprises, de la startup au grand groupe. Nous proposons également des paiements échelonnés pour faciliter l\'accès aux solutions d\'IA.',
   },
   {
     question: 'Quelle est la différence entre vos solutions et ChatGPT ?',
