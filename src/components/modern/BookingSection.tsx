@@ -7,24 +7,51 @@ export const BookingSection = () => {
     let cancelled = false;
 
     const mount = async () => {
-      const loadScript = () =>
+      // Ensure Cal command-queue shim exists before the script loads
+      if (!(window as any).Cal) {
+        (window as any).Cal = function (...args: any[]) {
+          ((window as any).Cal.q = (window as any).Cal.q || []).push(args);
+        };
+      }
+
+      const ensureAssets = () =>
         new Promise<void>((resolve) => {
-          if ((window as any).Cal) return resolve();
-          const existing = document.querySelector('script[data-cal="true"]') as HTMLScriptElement | null;
-          if (existing) {
-            existing.addEventListener('load', () => resolve(), { once: true });
-            if ((window as any).Cal) return resolve();
-            return;
+          let pending = 0;
+          const done = () => {
+            pending--;
+            if (pending <= 0) resolve();
+          };
+
+          // JS
+          const existingScript = document.querySelector('script[data-cal="true"]') as HTMLScriptElement | null;
+          if (!existingScript) {
+            pending++;
+            const script = document.createElement('script');
+            script.src = 'https://app.cal.com/embed/embed.js';
+            script.async = true;
+            script.dataset.cal = 'true';
+            script.onload = done;
+            script.onerror = done;
+            document.head.appendChild(script);
           }
-          const script = document.createElement('script');
-          script.src = 'https://app.cal.com/embed/embed.js';
-          script.async = true;
-          script.dataset.cal = 'true';
-          script.onload = () => resolve();
-          document.body.appendChild(script);
+
+          // CSS
+          const existingCss = document.querySelector('link[data-cal-css="true"]') as HTMLLinkElement | null;
+          if (!existingCss) {
+            pending++;
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://app.cal.com/embed/embed.css';
+            link.setAttribute('data-cal-css', 'true');
+            link.onload = done;
+            link.onerror = done;
+            document.head.appendChild(link);
+          }
+
+          if (pending === 0) resolve();
         });
 
-      await loadScript();
+      await ensureAssets();
       if (cancelled) return;
 
       const Cal = (window as any).Cal;
@@ -37,6 +64,7 @@ export const BookingSection = () => {
 
         if (typeof Cal === "function") {
           // Function-style API
+          Cal("init", { origin: "https://cal.com" });
           Cal("inline", options);
         } else if (Cal?.inline) {
           // Object-style API
