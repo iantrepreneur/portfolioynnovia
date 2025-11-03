@@ -4,14 +4,33 @@ import { useEffect } from 'react';
 
 export const BookingSection = () => {
   useEffect(() => {
-    // Load Cal.com embed script
-    const script = document.createElement('script');
-    script.src = 'https://app.cal.com/embed/embed.js';
+    const init = () => {
+      const Cal = (window as any).Cal;
+      if (!Cal) return;
+      // Namespace to avoid conflicts across navigations
+      Cal("init", "ynnovia", { origin: "https://cal.com" });
+      Cal.ns["ynnovia"]("inline", {
+        elementOrSelector: "#cal-inline",
+        calLink: "malick-ynnovia/30min",
+        config: { theme: "dark" }
+      });
+    };
+
+    if ((window as any).Cal) {
+      init();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://app.cal.com/embed/embed.js";
     script.async = true;
+    script.onload = init;
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      // Keep script for SPA; just clear container content on unmount
+      const container = document.getElementById("cal-inline");
+      if (container) container.innerHTML = "";
     };
   }, []);
 
@@ -101,9 +120,8 @@ export const BookingSection = () => {
               style={{ minHeight: '600px' }}
             >
               <div
-                data-cal-link="malick-ynnovia/30min"
-                data-cal-config='{"theme":"dark"}'
-                style={{ width: '100%', height: '100%', overflow: 'scroll' }}
+                id="cal-inline"
+                style={{ width: "100%", minHeight: "600px" }}
               />
             </div>
           </motion.div>
