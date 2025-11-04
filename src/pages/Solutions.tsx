@@ -196,13 +196,6 @@ export default function Solutions() {
                       >
                         {expandedId === automation.id ? 'Réduire' : 'Détails'}
                       </Button>
-                      <Button
-                        size="sm"
-                        className="flex-1 group/btn"
-                      >
-                        {automation.buttonText}
-                        <ExternalLink className="w-3 h-3 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
                     </div>
                   </div>
                 </Card>

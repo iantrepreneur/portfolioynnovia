@@ -94,7 +94,11 @@ export const BookingSection = () => {
               <Cal
                 calLink="iantrepreneur-qjqmc6/30min"
                 style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "auto" }}
-                config={{ layout: "month_view" }}
+                config={{ 
+                  layout: "column_view",
+                  theme: "dark"
+                }}
+                lang="fr"
               />
             </div>
           </motion.div>

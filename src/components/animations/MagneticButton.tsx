@@ -30,12 +30,6 @@ export const MagneticButton = ({ children, ...props }: ButtonProps) => {
         className="relative overflow-hidden group"
         {...props}
       >
-        {/* Ripple effect on click */}
-        <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-        
-        {/* Shine effect */}
-        <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        
         <span className="relative z-10">{children}</span>
       </Button>
     </motion.div>
