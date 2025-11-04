@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { MagneticButton } from '../animations/MagneticButton';
 
 export const HeroSection = () => {
@@ -97,7 +97,6 @@ export const HeroSection = () => {
               onClick={() => document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Réservez votre Audit Gratuit
-              <ArrowRight className="w-5 h-5 ml-2" />
             </MagneticButton>
             <MagneticButton
               variant="outline"

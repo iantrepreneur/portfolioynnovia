@@ -24,7 +24,7 @@ const tools = [
   },
   { 
     name: 'Teams', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg',
+    logo: 'https://www.vectorlogo.zone/logos/microsoft_teams/microsoft_teams-icon.svg',
     duration: 5.0, 
     delay: 0.3,
   },

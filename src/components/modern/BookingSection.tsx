@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Video } from 'lucide-react';
+import { Clock, Video, ChevronDown } from 'lucide-react';
 import Cal from "@calcom/embed-react";
 
 export const BookingSection = () => {
   // Cal.com is embedded via the official React component (@calcom/embed-react)
-
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <section id="booking-section" className="py-20 relative overflow-hidden">
@@ -86,20 +87,39 @@ export const BookingSection = () => {
               Cal.com
             </div>
             
+            {/* Toggle schedule visibility */}
+            <div className="flex justify-end mb-3">
+              <button
+                type="button"
+                onClick={() => setExpanded((v) => !v)}
+                className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
+                aria-expanded={expanded}
+                aria-controls="cal-embed-container"
+              >
+                {expanded ? 'Masquer les horaires' : 'Afficher les horaires'}
+                <ChevronDown className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
+            
             {/* Cal.com Inline Embed */}
-            <div 
-              className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden"
-              style={{ minHeight: '600px' }}
+            <div
+              id="cal-embed-container"
+              className={`transition-[max-height] duration-500 ease-in-out overflow-hidden ${expanded ? 'max-h-[1200px]' : 'max-h-[380px]'}`}
             >
-              <Cal
-                calLink="iantrepreneur-qjqmc6/30min"
-                style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "auto" }}
-                config={{ 
-                  layout: "column_view",
-                  theme: "dark"
-                }}
-                lang="fr"
-              />
+              <div 
+                className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden"
+                style={{ minHeight: '600px' }}
+              >
+                <Cal
+                  calLink="iantrepreneur-qjqmc6/30min"
+                  style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "auto" }}
+                  config={{ 
+                    layout: "column_view",
+                    theme: "dark"
+                  }}
+                  lang="fr"
+                />
+              </div>
             </div>
           </motion.div>
         </div>

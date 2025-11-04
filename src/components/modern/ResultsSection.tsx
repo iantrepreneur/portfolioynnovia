@@ -44,7 +44,7 @@ export const ResultsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Nos Résultats Parlent Pour Nous
+            Intégrez l'IA dans vos processus métiers
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Des solutions IA qui transforment réellement les entreprises
