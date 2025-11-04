@@ -57,17 +57,22 @@ export const BookingSection = () => {
       const Cal = (window as any).Cal;
       try {
         const options = {
-          elementOrSelector: "#cal-inline",
-          calLink: "iantrepreneur-qjqmc6",
-          config: { theme: "dark" },
+          elementOrSelector: "#my-cal-inline-30min",
+          calLink: "iantrepreneur-qjqmc6/30min",
+          config: { layout: "month_view", theme: "dark" },
         } as const;
 
         if (typeof Cal === "function") {
-          // Function-style API
-          Cal("init", { origin: "https://cal.com" });
-          Cal("inline", options);
+          // Function-style API with namespace as per Cal embed
+          Cal("init", "30min", { origin: "https://cal.com" });
+          if (Cal.ns?.["30min"]) {
+            Cal.ns["30min"]("inline", options);
+            Cal.ns["30min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+          } else {
+            Cal("inline", options);
+          }
         } else if (Cal?.inline) {
-          // Object-style API
+          // Object-style API fallback
           Cal.inline(options);
         } else {
           console.error("Cal.com embed not available on window.Cal");
@@ -81,7 +86,7 @@ export const BookingSection = () => {
 
     return () => {
       cancelled = true;
-      const container = document.getElementById("cal-inline");
+      const container = document.getElementById("my-cal-inline-30min");
       if (container) container.innerHTML = "";
     };
   }, []);
@@ -172,9 +177,9 @@ export const BookingSection = () => {
               style={{ minHeight: '600px' }}
             >
               <div
-                id="cal-inline"
-                data-cal-link="iantrepreneur-qjqmc6"
-                style={{ width: "100%", minHeight: "600px" }}
+                id="my-cal-inline-30min"
+                data-cal-link="iantrepreneur-qjqmc6/30min"
+                style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "auto" }}
               />
             </div>
           </motion.div>
