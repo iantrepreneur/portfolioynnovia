@@ -1,95 +1,10 @@
 import { motion } from 'framer-motion';
 import { Clock, Video } from 'lucide-react';
-import { useEffect } from 'react';
+import Cal from "@calcom/embed-react";
 
 export const BookingSection = () => {
-  useEffect(() => {
-    let cancelled = false;
+  // Cal.com is embedded via the official React component (@calcom/embed-react)
 
-    const mount = async () => {
-      // Ensure Cal command-queue shim exists before the script loads
-      if (!(window as any).Cal) {
-        (window as any).Cal = function (...args: any[]) {
-          ((window as any).Cal.q = (window as any).Cal.q || []).push(args);
-        };
-      }
-
-      const ensureAssets = () =>
-        new Promise<void>((resolve) => {
-          let pending = 0;
-          const done = () => {
-            pending--;
-            if (pending <= 0) resolve();
-          };
-
-          // JS
-          const existingScript = document.querySelector('script[data-cal="true"]') as HTMLScriptElement | null;
-          if (!existingScript) {
-            pending++;
-            const script = document.createElement('script');
-            script.src = 'https://app.cal.com/embed/embed.js';
-            script.async = true;
-            script.dataset.cal = 'true';
-            script.onload = done;
-            script.onerror = done;
-            document.head.appendChild(script);
-          }
-
-          // CSS
-          const existingCss = document.querySelector('link[data-cal-css="true"]') as HTMLLinkElement | null;
-          if (!existingCss) {
-            pending++;
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://app.cal.com/embed/embed.css';
-            link.setAttribute('data-cal-css', 'true');
-            link.onload = done;
-            link.onerror = done;
-            document.head.appendChild(link);
-          }
-
-          if (pending === 0) resolve();
-        });
-
-      await ensureAssets();
-      if (cancelled) return;
-
-      const Cal = (window as any).Cal;
-      try {
-        const options = {
-          elementOrSelector: "#my-cal-inline-30min",
-          calLink: "iantrepreneur-qjqmc6/30min",
-          config: { layout: "month_view", theme: "dark" },
-        } as const;
-
-        if (typeof Cal === "function") {
-          // Function-style API with namespace as per Cal embed
-          Cal("init", "30min", { origin: "https://cal.com" });
-          if (Cal.ns?.["30min"]) {
-            Cal.ns["30min"]("inline", options);
-            Cal.ns["30min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
-          } else {
-            Cal("inline", options);
-          }
-        } else if (Cal?.inline) {
-          // Object-style API fallback
-          Cal.inline(options);
-        } else {
-          console.error("Cal.com embed not available on window.Cal");
-        }
-      } catch (e) {
-        console.error("Cal.com inline init error", e);
-      }
-    };
-
-    mount();
-
-    return () => {
-      cancelled = true;
-      const container = document.getElementById("my-cal-inline-30min");
-      if (container) container.innerHTML = "";
-    };
-  }, []);
 
   return (
     <section id="booking-section" className="py-20 relative overflow-hidden">
@@ -176,10 +91,10 @@ export const BookingSection = () => {
               className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden"
               style={{ minHeight: '600px' }}
             >
-              <div
-                id="my-cal-inline-30min"
-                data-cal-link="iantrepreneur-qjqmc6/30min"
+              <Cal
+                calLink="iantrepreneur-qjqmc6/30min"
                 style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "auto" }}
+                config={{ layout: "month_view" }}
               />
             </div>
           </motion.div>
