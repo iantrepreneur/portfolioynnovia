@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Video, ChevronDown } from 'lucide-react';
+import { Clock, Video } from 'lucide-react';
 import Cal from "@calcom/embed-react";
 
 export const BookingSection = () => {
   // Cal.com is embedded via the official React component (@calcom/embed-react)
-  const [expanded, setExpanded] = useState(false);
 
   return (
     <section id="booking-section" className="py-20 relative overflow-hidden">
@@ -30,9 +28,9 @@ export const BookingSection = () => {
           </p>
         </motion.div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left Column - Info Card */}
+        {/* Single Column Layout */}
+        <div className="space-y-8">
+          {/* Info Card */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -74,10 +72,10 @@ export const BookingSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Column - Cal.com Embed */}
+          {/* Cal.com Embed */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="relative"
@@ -87,39 +85,17 @@ export const BookingSection = () => {
               Cal.com
             </div>
             
-            {/* Toggle schedule visibility */}
-            <div className="flex justify-end mb-3">
-              <button
-                type="button"
-                onClick={() => setExpanded((v) => !v)}
-                className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
-                aria-expanded={expanded}
-                aria-controls="cal-embed-container"
-              >
-                {expanded ? 'Masquer les horaires' : 'Afficher les horaires'}
-                <ChevronDown className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`} />
-              </button>
-            </div>
-            
             {/* Cal.com Inline Embed */}
-            <div
-              id="cal-embed-container"
-              className={`transition-[max-height] duration-500 ease-in-out overflow-hidden ${expanded ? 'max-h-[1200px]' : 'max-h-[380px]'}`}
-            >
-              <div 
-                className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden"
-                style={{ minHeight: '600px' }}
-              >
-                <Cal
-                  calLink="iantrepreneur-qjqmc6/30min"
-                  style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "auto" }}
-                  config={{ 
-                    layout: "column_view",
-                    theme: "dark"
-                  }}
-                  lang="fr"
-                />
-              </div>
+            <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden">
+              <Cal
+                calLink="iantrepreneur-qjqmc6/30min"
+                style={{ width: "100%", height: "100%", minHeight: "700px", overflow: "auto" }}
+                config={{ 
+                  layout: "column_view",
+                  theme: "dark"
+                }}
+                lang="fr"
+              />
             </div>
           </motion.div>
         </div>
