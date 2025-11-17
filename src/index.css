@@ -79,12 +79,12 @@ All colors MUST be HSL.
     --sidebar-ring: 217 91% 55%;
     
     /* Custom colors for game modes */
-    --f2p-gray: 220 5% 96%;
-    --f2p-gray-foreground: 220 10% 25%;
-    --f2p-gray-border: 220 5% 85%;
-    --sorare-gold: 45 90% 92%;
-    --sorare-gold-foreground: 35 80% 20%;
-    --sorare-gold-border: 45 70% 65%;
+    --f2p-gray: 220 15% 25%;
+    --f2p-gray-foreground: 220 20% 85%;
+    --f2p-gray-border: 220 15% 35%;
+    --sorare-gold: 45 70% 25%;
+    --sorare-gold-foreground: 45 90% 85%;
+    --sorare-gold-border: 45 50% 45%;
   }
 
   .dark {
