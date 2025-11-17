@@ -8,12 +8,12 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Modern AI Agency Light Theme */
-    --background: 0 0% 100%; /* White */
-    --foreground: 222 47% 11%; /* Dark blue-gray */
+    /* Modern AI Agency Light Theme - Professional Edition */
+    --background: 0 0% 99%; /* Off-white for softer look */
+    --foreground: 222 47% 15%; /* Darker for better readability */
 
-    --card: 0 0% 100%; /* White card */
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 100%; /* Pure white cards */
+    --card-foreground: 222 47% 15%;
     
     /* AI Agency gradient colors */
     --ai-blue: 217 91% 60%; /* Bright blue */
@@ -21,61 +21,62 @@ All colors MUST be HSL.
     --ai-cyan: 189 94% 43%; /* Electric cyan */
     --ai-pink: 322 89% 68%; /* Neon pink */
     
-    /* Primary - AI Blue to Purple gradient */
-    --primary: 217 91% 60%;
+    /* Primary - AI Blue with strong presence */
+    --primary: 217 91% 55%;
     --primary-foreground: 0 0% 100%;
     
-    /* Secondary - Light gray */
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    /* Secondary - Subtle gray with depth */
+    --secondary: 220 20% 95%;
+    --secondary-foreground: 222 47% 15%;
     
-    /* Muted elements */
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    /* Muted elements - More contrast */
+    --muted: 220 15% 94%;
+    --muted-foreground: 222 25% 45%;
     
-    /* Button hover - Lighter blue */
-    --button-hover: 217 91% 70%;
+    /* Button hover - More vibrant */
+    --button-hover: 217 91% 65%;
     
-    /* Borders - Subtle */
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    /* Borders - More visible but still subtle */
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
     
-    /* AI Agency gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(262, 83%, 58%) 100%);
+    /* AI Agency gradients - Enhanced */
+    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 55%) 0%, hsl(262, 83%, 58%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(189, 94%, 43%) 0%, hsl(217, 91%, 60%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(220, 30%, 98%) 0%, hsl(210, 40%, 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(220, 20%, 98%) 100%);
     
-    /* Glassmorphism */
-    --glass-bg: hsl(0 0% 100% / 0.6);
-    --glass-border: hsl(222 47% 11% / 0.1);
+    /* Glassmorphism - Better visibility */
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(222 47% 11% / 0.12);
     
-    /* Premium shadows */
-    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.2);
-    --shadow-glow-strong: 0 0 60px hsl(217 91% 60% / 0.3);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.1);
+    /* Premium shadows - More depth */
+    --shadow-glow: 0 4px 24px hsl(217 91% 60% / 0.15);
+    --shadow-glow-strong: 0 8px 40px hsl(217 91% 60% / 0.25);
+    --shadow-card: 0 2px 8px hsl(222 47% 11% / 0.08), 0 8px 24px hsl(222 47% 11% / 0.06);
+    --shadow-subtle: 0 1px 3px hsl(222 47% 11% / 0.05);
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 222 47% 15%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 220 20% 95%;
+    --accent-foreground: 222 47% 15%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --ring: 217 91% 60%;
+    --ring: 217 91% 55%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 222 47% 15%;
+    --sidebar-primary: 217 91% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-accent: 220 20% 95%;
+    --sidebar-accent-foreground: 222 47% 15%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 217 91% 55%;
     
     /* Custom colors for game modes */
     --f2p-gray: 220 5% 96%;
