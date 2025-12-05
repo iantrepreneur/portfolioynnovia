@@ -102,9 +102,9 @@ export const HeroSection = () => {
               variant="outline"
               size="lg"
               className="rounded-full px-8 py-6 text-lg font-semibold border-primary/20 hover:bg-primary/10"
-              onClick={() => document.getElementById('solutions')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Voir nos Solutions
+              Découvrir nos offres
             </MagneticButton>
           </motion.div>
 
