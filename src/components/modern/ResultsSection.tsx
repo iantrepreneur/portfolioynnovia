@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MessageSquare, Shield, TrendingUp, Zap } from 'lucide-react';
+import { MessageSquare, FileText, TrendingUp, Zap } from 'lucide-react';
 
 const results = [
   {
@@ -10,10 +10,10 @@ const results = [
     color: 'hsl(217, 91%, 60%)',
   },
   {
-    icon: Shield,
-    title: 'Cybersécurité Automatisée',
-    description: 'Détection et prévention de 99.9% des menaces en temps réel grâce à l\'IA',
-    badge: 'Sécurité IA',
+    icon: FileText,
+    title: 'Gestion Documentaire IA',
+    description: 'Classement, extraction et recherche automatisés dans tous vos documents',
+    badge: 'Documents IA',
     color: 'hsl(262, 83%, 58%)',
   },
   {
