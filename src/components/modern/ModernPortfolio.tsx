@@ -67,6 +67,9 @@ export const ModernPortfolio = () => {
               <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors">
                 FAQ
               </a>
+              <a href="/cv" className="text-sm font-medium hover:text-primary transition-colors">
+                CV
+              </a>
               <ThemeToggle />
             </motion.div>
           </div>
