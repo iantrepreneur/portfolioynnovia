@@ -55,6 +55,9 @@ export const ModernPortfolio = () => {
               <a href="#solutions" className="text-sm font-medium hover:text-primary transition-colors">
                 Solutions
               </a>
+              <a href="/projets-clients" className="text-sm font-medium hover:text-primary transition-colors">
+                Projets Clients
+              </a>
               <a href="#integration" className="text-sm font-medium hover:text-primary transition-colors">
                 Intégration
               </a>
