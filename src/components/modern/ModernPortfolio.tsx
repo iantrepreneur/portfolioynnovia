@@ -43,7 +43,7 @@ export const ModernPortfolio = () => {
                   transition: { duration: 0.3 }
                 }}
               />
-              <span className="text-xl font-bold text-foreground">Ynnovia</span>
+              
             </motion.a>
             
             <motion.div

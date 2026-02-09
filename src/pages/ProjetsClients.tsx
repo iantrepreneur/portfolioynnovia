@@ -1,31 +1,36 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Play, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, Play, ChevronDown, ChevronUp, Clock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollProgress } from '@/components/animations/ScrollProgress';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { applications } from '@/data/applications';
+import { automations } from '@/data/automations';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import ynnoviaLogo from '@/assets/ynnovia-logo.png';
+
+type TabKey = 'plateforme' | 'automatisations';
 
 interface ProjectModalData {
   name: string;
   category: string;
   description: string;
-  stack: string[];
-  metrics: string[];
+  stack?: string[];
+  metrics?: string[];
+  features?: string[];
   iconColor: string;
   categoryColor: string;
   image: string;
 }
 
 export default function ProjetsClients() {
+  const [activeTab, setActiveTab] = useState<TabKey>('plateforme');
   const [selectedProject, setSelectedProject] = useState<ProjectModalData | null>(null);
-  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+  const [expandedCards, setExpandedCards] = useState<Set<number | string>>(new Set());
 
-  const toggleExpand = (id: number) => {
+  const toggleExpand = (id: number | string) => {
     setExpandedCards(prev => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -35,6 +40,11 @@ export default function ProjetsClients() {
   };
 
   const DESC_LIMIT = 120;
+
+  const tabs: { key: TabKey; label: string }[] = [
+    { key: 'plateforme', label: 'Plateformes' },
+    { key: 'automatisations', label: 'Automatisations' },
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -62,7 +72,6 @@ export default function ProjetsClients() {
                 className="h-12 w-12 object-contain"
                 whileHover={{ scale: 1.05, rotateY: 10, transition: { duration: 0.3 } }}
               />
-              <span className="text-xl font-bold text-foreground">Ynnovia</span>
             </motion.a>
             <motion.div
               className="flex items-center gap-6"
@@ -83,7 +92,7 @@ export default function ProjetsClients() {
       </motion.nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
+      <section className="pt-32 pb-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
         <div className="container mx-auto px-6 lg:px-8 relative z-10">
           <Link to="/">
@@ -97,7 +106,7 @@ export default function ProjetsClients() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
@@ -113,91 +122,222 @@ export default function ProjetsClients() {
               Découvrez les projets que nous avons réalisés pour nos clients et les résultats obtenus
             </p>
           </motion.div>
+
+          {/* Tabs */}
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex bg-muted/50 backdrop-blur-sm rounded-xl p-1.5 border border-border/50">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => {
+                    setActiveTab(tab.key);
+                    setExpandedCards(new Set());
+                  }}
+                  className={`relative px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeTab === tab.key
+                      ? 'text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {activeTab === tab.key && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-primary rounded-lg shadow-lg"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Content */}
       <section className="pb-32">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {applications.map((project, index) => {
-              const isExpanded = expandedCards.has(project.id);
-              const shortDesc = project.description.length > DESC_LIMIT
-                ? project.description.slice(0, DESC_LIMIT) + '...'
-                : project.description;
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+          >
+            {activeTab === 'plateforme' &&
+              applications.map((project, index) => {
+                const isExpanded = expandedCards.has(project.id);
+                const shortDesc =
+                  project.description.length > DESC_LIMIT
+                    ? project.description.slice(0, DESC_LIMIT) + '...'
+                    : project.description;
 
-              return (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group"
-                >
-                  <div className="relative bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(217,91%,60%,0.15)]">
-                    {/* Video/Image Thumbnail */}
-                    <div
-                      className="relative aspect-video cursor-pointer overflow-hidden"
-                      onClick={() => setSelectedProject(project)}
-                    >
-                      <img
-                        src={project.image}
-                        alt={project.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      {/* Play overlay */}
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
-                        <motion.div
-                          className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_30px_hsl(217,91%,60%,0.5)]"
-                          whileHover={{ scale: 1.15 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Play className="w-7 h-7 text-primary-foreground ml-1" />
-                        </motion.div>
-                      </div>
-                      <Badge className={`absolute top-4 left-4 ${project.categoryColor} backdrop-blur-sm`}>
-                        {project.category}
-                      </Badge>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
-                        {project.name}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {isExpanded ? project.description : shortDesc}
-                      </p>
-                      {project.description.length > DESC_LIMIT && (
-                        <button
-                          onClick={() => toggleExpand(project.id)}
-                          className="text-primary text-sm font-medium flex items-center gap-1 hover:underline"
-                        >
-                          {isExpanded ? (
-                            <>Voir moins <ChevronUp className="w-3 h-3" /></>
-                          ) : (
-                            <>Voir plus <ChevronDown className="w-3 h-3" /></>
-                          )}
-                        </button>
-                      )}
-
-                      {/* Metrics */}
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {project.metrics.map((metric, i) => (
-                          <span
-                            key={i}
-                            className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="group"
+                  >
+                    <div className="relative bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(217,91%,60%,0.15)]">
+                      <div
+                        className="relative aspect-video cursor-pointer overflow-hidden"
+                        onClick={() => setSelectedProject(project)}
+                      >
+                        <img
+                          src={project.image}
+                          alt={project.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                          <motion.div
+                            className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_30px_hsl(217,91%,60%,0.5)]"
+                            whileHover={{ scale: 1.15 }}
+                            whileTap={{ scale: 0.95 }}
                           >
-                            {metric}
-                          </span>
-                        ))}
+                            <Play className="w-7 h-7 text-primary-foreground ml-1" />
+                          </motion.div>
+                        </div>
+                        <Badge className={`absolute top-4 left-4 ${project.categoryColor} backdrop-blur-sm`}>
+                          {project.category}
+                        </Badge>
+                      </div>
+
+                      <div className="p-6">
+                        <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                          {project.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                          {isExpanded ? project.description : shortDesc}
+                        </p>
+                        {project.description.length > DESC_LIMIT && (
+                          <button
+                            onClick={() => toggleExpand(project.id)}
+                            className="text-primary text-sm font-medium flex items-center gap-1 hover:underline"
+                          >
+                            {isExpanded ? (
+                              <>Voir moins <ChevronUp className="w-3 h-3" /></>
+                            ) : (
+                              <>Voir plus <ChevronDown className="w-3 h-3" /></>
+                            )}
+                          </button>
+                        )}
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {project.metrics.map((metric, i) => (
+                            <span
+                              key={i}
+                              className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
+                            >
+                              {metric}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                  </motion.div>
+                );
+              })}
+
+            {activeTab === 'automatisations' &&
+              automations.map((auto, index) => {
+                const isExpanded = expandedCards.has(auto.id);
+                const shortDesc =
+                  auto.description.length > DESC_LIMIT
+                    ? auto.description.slice(0, DESC_LIMIT) + '...'
+                    : auto.description;
+                const IconComp = auto.icon;
+
+                return (
+                  <motion.div
+                    key={auto.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.08 }}
+                    className="group"
+                  >
+                    <div className="relative bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(217,91%,60%,0.15)]">
+                      <div
+                        className="relative aspect-video cursor-pointer overflow-hidden"
+                        onClick={() =>
+                          setSelectedProject({
+                            name: auto.name,
+                            category: auto.category,
+                            description: auto.description,
+                            features: auto.features,
+                            iconColor: auto.iconColor,
+                            categoryColor: auto.categoryColor,
+                            image: auto.image,
+                          })
+                        }
+                      >
+                        <img
+                          src={auto.image}
+                          alt={auto.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                          <motion.div
+                            className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_30px_hsl(217,91%,60%,0.5)]"
+                            whileHover={{ scale: 1.15 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Play className="w-7 h-7 text-primary-foreground ml-1" />
+                          </motion.div>
+                        </div>
+                        <Badge className={`absolute top-4 left-4 ${auto.categoryColor} backdrop-blur-sm`}>
+                          {auto.category}
+                        </Badge>
+                      </div>
+
+                      <div className="p-6">
+                        <div className="flex items-center gap-2 mb-2">
+                          <IconComp className={`w-5 h-5 ${auto.iconColor}`} />
+                          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                            {auto.name}
+                          </h3>
+                        </div>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                          {isExpanded ? auto.description : shortDesc}
+                        </p>
+                        {auto.description.length > DESC_LIMIT && (
+                          <button
+                            onClick={() => toggleExpand(auto.id)}
+                            className="text-primary text-sm font-medium flex items-center gap-1 hover:underline"
+                          >
+                            {isExpanded ? (
+                              <>Voir moins <ChevronUp className="w-3 h-3" /></>
+                            ) : (
+                              <>Voir plus <ChevronDown className="w-3 h-3" /></>
+                            )}
+                          </button>
+                        )}
+                        <div className="flex items-center gap-4 mt-4 text-xs text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <Zap className="w-3.5 h-3.5 text-primary" />
+                            {auto.executionsCount}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5 text-primary" />
+                            {auto.timeEstimate}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {auto.features.map((f, i) => (
+                            <span
+                              key={i}
+                              className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
+                            >
+                              {f}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+          </motion.div>
         </div>
       </section>
 
@@ -209,7 +349,6 @@ export default function ProjetsClients() {
           </DialogTitle>
           {selectedProject && (
             <div>
-              {/* Video/Image area */}
               <div className="relative aspect-video bg-black">
                 <img
                   src={selectedProject.image}
@@ -227,52 +366,67 @@ export default function ProjetsClients() {
                 </div>
               </div>
 
-              {/* Project Info - YouTube-style */}
               <div className="p-6 space-y-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <Badge className={`${selectedProject.categoryColor} mb-3`}>
-                      {selectedProject.category}
-                    </Badge>
-                    <h2 className="text-2xl font-bold text-foreground">
-                      {selectedProject.name}
-                    </h2>
-                  </div>
+                <div>
+                  <Badge className={`${selectedProject.categoryColor} mb-3`}>
+                    {selectedProject.category}
+                  </Badge>
+                  <h2 className="text-2xl font-bold text-foreground">
+                    {selectedProject.name}
+                  </h2>
                 </div>
 
                 <p className="text-muted-foreground leading-relaxed">
                   {selectedProject.description}
                 </p>
 
-                {/* Stack */}
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-2">Stack technique</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.stack.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="text-xs px-3 py-1.5 rounded-lg bg-muted text-muted-foreground font-medium border border-border/50"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                {selectedProject.stack && (
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground mb-2">Stack technique</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.stack.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-3 py-1.5 rounded-lg bg-muted text-muted-foreground font-medium border border-border/50"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Metrics */}
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-2">Résultats</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.metrics.map((metric, i) => (
-                      <span
-                        key={i}
-                        className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary font-semibold"
-                      >
-                        {metric}
-                      </span>
-                    ))}
+                {selectedProject.features && (
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground mb-2">Fonctionnalités</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.features.map((f, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-3 py-1.5 rounded-lg bg-muted text-muted-foreground font-medium border border-border/50"
+                        >
+                          {f}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {selectedProject.metrics && (
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground mb-2">Résultats</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.metrics.map((metric, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary font-semibold"
+                        >
+                          {metric}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
