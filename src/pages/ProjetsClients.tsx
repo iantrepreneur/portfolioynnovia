@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Play, ChevronDown, ChevronUp, Clock, Zap } from 'lucide-react';
+import { ArrowLeft, Play, ChevronDown, ChevronUp, Clock, Zap, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 import { ScrollProgress } from '@/components/animations/ScrollProgress';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { Navbar } from '@/components/Navbar';
 import { applications } from '@/data/applications';
 import { automations } from '@/data/automations';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import ynnoviaLogo from '@/assets/ynnovia-logo.png';
 
 type TabKey = 'plateforme' | 'automatisations';
 
@@ -25,10 +25,14 @@ interface ProjectModalData {
   image: string;
 }
 
+const categories = ['Toutes', 'Communication', 'Finance', 'Marketing', 'CRM & Marketing', 'Infrastructure', 'Intelligence Artificielle'];
+
 export default function ProjetsClients() {
   const [activeTab, setActiveTab] = useState<TabKey>('plateforme');
   const [selectedProject, setSelectedProject] = useState<ProjectModalData | null>(null);
   const [expandedCards, setExpandedCards] = useState<Set<number | string>>(new Set());
+  const [selectedCategory, setSelectedCategory] = useState('Toutes');
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const toggleExpand = (id: number | string) => {
     setExpandedCards(prev => {
@@ -41,6 +45,10 @@ export default function ProjetsClients() {
 
   const DESC_LIMIT = 120;
 
+  const filteredAutomations = selectedCategory === 'Toutes'
+    ? automations
+    : automations.filter(a => a.category === selectedCategory);
+
   const tabs: { key: TabKey; label: string }[] = [
     { key: 'plateforme', label: 'Plateformes' },
     { key: 'automatisations', label: 'Automatisations' },
@@ -49,47 +57,7 @@ export default function ProjetsClients() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ScrollProgress />
-
-      {/* Navigation */}
-      <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, type: 'spring' }}
-      >
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <motion.a
-              href="/"
-              className="flex items-center gap-3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <motion.img
-                src={ynnoviaLogo}
-                alt="Ynnovia"
-                className="h-12 w-12 object-contain"
-                whileHover={{ scale: 1.05, rotateY: 10, transition: { duration: 0.3 } }}
-              />
-            </motion.a>
-            <motion.div
-              className="flex items-center gap-6"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
-                Accueil
-              </Link>
-              <Link to="/solutions" className="text-sm font-medium hover:text-primary transition-colors">
-                Solutions
-              </Link>
-              <ThemeToggle />
-            </motion.div>
-          </div>
-        </div>
-      </motion.nav>
+      <Navbar />
 
       {/* Hero */}
       <section className="pt-32 pb-8 relative overflow-hidden">
@@ -115,10 +83,10 @@ export default function ProjetsClients() {
             >
               Portfolio
             </motion.span>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Projets Clients
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               Découvrez les projets que nous avons réalisés pour nos clients et les résultats obtenus
             </p>
           </motion.div>
@@ -132,6 +100,8 @@ export default function ProjetsClients() {
                   onClick={() => {
                     setActiveTab(tab.key);
                     setExpandedCards(new Set());
+                    setSelectedCategory('Toutes');
+                    setExpandedId(null);
                   }}
                   className={`relative px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
                     activeTab === tab.key
@@ -157,15 +127,16 @@ export default function ProjetsClients() {
       {/* Content */}
       <section className="pb-32">
         <div className="container mx-auto px-6 lg:px-8">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto"
-          >
-            {activeTab === 'plateforme' &&
-              applications.map((project, index) => {
+          {/* Plateformes Tab */}
+          {activeTab === 'plateforme' && (
+            <motion.div
+              key="plateforme"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+            >
+              {applications.map((project, index) => {
                 const isExpanded = expandedCards.has(project.id);
                 const shortDesc =
                   project.description.length > DESC_LIMIT
@@ -238,106 +209,144 @@ export default function ProjetsClients() {
                   </motion.div>
                 );
               })}
+            </motion.div>
+          )}
 
-            {activeTab === 'automatisations' &&
-              automations.map((auto, index) => {
-                const isExpanded = expandedCards.has(auto.id);
-                const shortDesc =
-                  auto.description.length > DESC_LIMIT
-                    ? auto.description.slice(0, DESC_LIMIT) + '...'
-                    : auto.description;
-                const IconComp = auto.icon;
-
-                return (
-                  <motion.div
-                    key={auto.id}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.08 }}
-                    className="group"
+          {/* Automatisations Tab - Solutions content */}
+          {activeTab === 'automatisations' && (
+            <motion.div
+              key="automatisations"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {/* Category Filters */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-wrap justify-center gap-3 mb-12"
+              >
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    onClick={() => setSelectedCategory(category)}
+                    className="transition-all duration-300"
+                    size="sm"
                   >
-                    <div className="relative bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(217,91%,60%,0.15)]">
-                      <div
-                        className="relative aspect-video cursor-pointer overflow-hidden"
-                        onClick={() =>
-                          setSelectedProject({
-                            name: auto.name,
-                            category: auto.category,
-                            description: auto.description,
-                            features: auto.features,
-                            iconColor: auto.iconColor,
-                            categoryColor: auto.categoryColor,
-                            image: auto.image,
-                          })
-                        }
-                      >
+                    {category}
+                  </Button>
+                ))}
+              </motion.div>
+
+              {/* Solutions Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {filteredAutomations.map((automation, index) => (
+                  <motion.div
+                    key={automation.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  >
+                    <Card className="group relative overflow-hidden border border-border/50 bg-card/40 backdrop-blur-xl hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_hsl(217,91%,60%,0.3)] h-full flex flex-col">
+                      <div className="relative h-48 overflow-hidden">
                         <img
-                          src={auto.image}
-                          alt={auto.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          src={automation.image}
+                          alt={automation.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
-                          <motion.div
-                            className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_30px_hsl(217,91%,60%,0.5)]"
-                            whileHover={{ scale: 1.15 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Play className="w-7 h-7 text-primary-foreground ml-1" />
-                          </motion.div>
-                        </div>
-                        <Badge className={`absolute top-4 left-4 ${auto.categoryColor} backdrop-blur-sm`}>
-                          {auto.category}
+                        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
+                        <Badge className={`absolute top-4 right-4 ${automation.categoryColor}`}>
+                          {automation.category}
                         </Badge>
                       </div>
 
-                      <div className="p-6">
-                        <div className="flex items-center gap-2 mb-2">
-                          <IconComp className={`w-5 h-5 ${auto.iconColor}`} />
-                          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                            {auto.name}
-                          </h3>
-                        </div>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                          {isExpanded ? auto.description : shortDesc}
+                      <div className="p-6 flex-1 flex flex-col">
+                        <motion.div
+                          whileHover={{ rotate: 360, scale: 1.1 }}
+                          transition={{ duration: 0.6 }}
+                          className="mb-4"
+                        >
+                          <automation.icon className={`w-10 h-10 ${automation.iconColor}`} />
+                        </motion.div>
+
+                        <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                          {automation.name}
+                        </h3>
+
+                        <p className="text-muted-foreground mb-4 flex-1">
+                          {automation.description}
                         </p>
-                        {auto.description.length > DESC_LIMIT && (
-                          <button
-                            onClick={() => toggleExpand(auto.id)}
-                            className="text-primary text-sm font-medium flex items-center gap-1 hover:underline"
+
+                        {expandedId === automation.id && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="mb-4 space-y-3"
                           >
-                            {isExpanded ? (
-                              <>Voir moins <ChevronUp className="w-3 h-3" /></>
-                            ) : (
-                              <>Voir plus <ChevronDown className="w-3 h-3" /></>
-                            )}
-                          </button>
+                            <div>
+                              <h4 className="font-semibold text-sm mb-2 text-primary">Fonctionnalités :</h4>
+                              <ul className="space-y-1">
+                                {automation.features.map((feature, idx) => (
+                                  <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                                    <span className="text-primary mt-1">•</span>
+                                    {feature}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div className="flex gap-4 text-sm text-muted-foreground">
+                              <div>
+                                <span className="font-semibold text-foreground">Exécutions :</span> {automation.executionsCount}
+                              </div>
+                              <div>
+                                <span className="font-semibold text-foreground">Temps :</span> {automation.timeEstimate}
+                              </div>
+                            </div>
+                          </motion.div>
                         )}
-                        <div className="flex items-center gap-4 mt-4 text-xs text-muted-foreground">
-                          <span className="flex items-center gap-1">
-                            <Zap className="w-3.5 h-3.5 text-primary" />
-                            {auto.executionsCount}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3.5 h-3.5 text-primary" />
-                            {auto.timeEstimate}
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap gap-2 mt-3">
-                          {auto.features.map((f, i) => (
-                            <span
-                              key={i}
-                              className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
-                            >
-                              {f}
-                            </span>
-                          ))}
+
+                        <div className="flex gap-3 mt-4">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setExpandedId(expandedId === automation.id ? null : automation.id)}
+                            className="flex-1"
+                          >
+                            {expandedId === automation.id ? 'Réduire' : 'Détails'}
+                          </Button>
                         </div>
                       </div>
-                    </div>
+                    </Card>
                   </motion.div>
-                );
-              })}
-          </motion.div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-20 text-center"
+              >
+                <div className="bg-gradient-to-r from-primary/20 via-purple-500/20 to-cyan-500/20 rounded-3xl p-12 backdrop-blur-xl border border-border/50">
+                  <h2 className="text-3xl font-bold mb-4">Besoin d'une Solution Sur Mesure ?</h2>
+                  <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                    Nos experts sont là pour créer une automatisation parfaitement adaptée
+                    à vos besoins spécifiques
+                  </p>
+                  <Link to="/">
+                    <Button size="lg" className="group">
+                      Demander une Démo
+                      <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
         </div>
       </section>
 

@@ -1,8 +1,12 @@
-import { LucideIcon, Share2, MessageCircle, Target, Mic } from 'lucide-react';
+import { LucideIcon, Share2, MessageCircle, Target, Mic, Shield, Layers, BookHeart, Phone } from 'lucide-react';
 import postelmaImg from '@/assets/applications/postelma.jpg';
 import supportHubImg from '@/assets/applications/support-hub.jpg';
 import crmAiImg from '@/assets/applications/crm-ai.jpg';
 import podcastAiImg from '@/assets/applications/podcast-ai.jpg';
+import adiaImg from '@/assets/applications/adia.jpg';
+import erpiaImg from '@/assets/applications/erpia.jpg';
+import miniheroesImg from '@/assets/applications/miniheroes.jpg';
+import saviaImg from '@/assets/applications/savia.jpg';
 
 export interface Application {
   id: number;
@@ -70,5 +74,57 @@ export const applications: Application[] = [
     categoryColor: "bg-cyan-500/10",
     buttonText: "Voir le projet",
     image: podcastAiImg
+  },
+  {
+    id: 5,
+    name: "ADIA - Plateforme de Création d'Agents IA",
+    category: "Intelligence Artificielle",
+    description: "Plateforme de création d'agents IA en local (RH, Marketing, Support…) garantissant la confidentialité totale des données. Toutes vos données restent chez vous, aucune fuite vers des serveurs tiers. Déploiement on-premise avec modèles open source.",
+    stack: ["Llama", "FastAPI", "React", "Docker", "ChromaDB", "RAG"],
+    metrics: ["100% données locales", "5+ types d'agents", "Confidentialité garantie"],
+    icon: Shield,
+    iconColor: "text-emerald-500",
+    categoryColor: "bg-emerald-500/10",
+    buttonText: "Voir le projet",
+    image: adiaImg
+  },
+  {
+    id: 6,
+    name: "ERPIA - ERP Intelligent Modulaire",
+    category: "ERP & Gestion",
+    description: "Continuité de Postelma qui devient le module Marketing, avec ajout de modules Comptabilité, Stock, Vente et plus encore. Solution ERP complète intégrant l'IA pour automatiser les processus métiers et centraliser la gestion d'entreprise.",
+    stack: ["React", "FastAPI", "PostgreSQL", "N8N", "GPT-4", "Redis"],
+    metrics: ["6+ modules intégrés", "-40% temps de gestion", "Automatisation complète"],
+    icon: Layers,
+    iconColor: "text-violet-500",
+    categoryColor: "bg-violet-500/10",
+    buttonText: "Voir le projet",
+    image: erpiaImg
+  },
+  {
+    id: 7,
+    name: "MiniHeroes - Contenu Éducatif pour Enfants",
+    category: "Éducation",
+    description: "Plateforme de création de contenu éducatif pour enfants où l'enfant est l'acteur principal de ses histoires. Apprentissage ludique : se brosser les dents, faire ses devoirs, ranger sa chambre… L'enfant se voit dans des aventures personnalisées.",
+    stack: ["React", "Stable Diffusion", "ElevenLabs TTS", "FastAPI", "GPT-4"],
+    metrics: ["10+ scénarios éducatifs", "Personnalisation IA", "Multi-langues"],
+    icon: BookHeart,
+    iconColor: "text-pink-500",
+    categoryColor: "bg-pink-500/10",
+    buttonText: "Voir le projet",
+    image: miniheroesImg
+  },
+  {
+    id: 8,
+    name: "SAVIA - Agent Vocal IA Service Client",
+    category: "Communication",
+    description: "Clone de VAPI : plateforme de service client pour configurer un agent IA qui répond aux appels clients. L'agent renseigne les utilisateurs, qualifie les demandes et route vers le bon service. Configuration no-code de scénarios conversationnels vocaux.",
+    stack: ["WebRTC", "Whisper", "GPT-4", "ElevenLabs", "FastAPI", "React"],
+    metrics: ["Support vocal 24/7", "-60% appels manuels", "Configuration no-code"],
+    icon: Phone,
+    iconColor: "text-amber-500",
+    categoryColor: "bg-amber-500/10",
+    buttonText: "Voir le projet",
+    image: saviaImg
   }
 ];
