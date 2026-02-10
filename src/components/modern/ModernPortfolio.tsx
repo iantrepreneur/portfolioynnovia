@@ -36,14 +36,14 @@ export const ModernPortfolio = () => {
               <motion.img 
                 src={ynnoviaLogo} 
                 alt="Ynnovia" 
-                className="h-12 w-12 object-contain"
+                className="h-10 w-10 object-contain rounded-lg"
                 whileHover={{ 
                   scale: 1.05,
                   rotateY: 10,
                   transition: { duration: 0.3 }
                 }}
               />
-              
+              <span className="text-lg font-bold tracking-wide">YNNOVIA</span>
             </motion.a>
             
             <motion.div
