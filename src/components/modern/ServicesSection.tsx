@@ -136,7 +136,7 @@ export const ServicesSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <a href="/solutions">
+          <a href="/projets-clients">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Briefcase, GraduationCap, Code, Brain, Globe, ChevronLeft, Rocket, Users, Award, Calendar } from 'lucide-react';
+import { Mail, Phone, MapPin, Briefcase, GraduationCap, Code, Brain, Globe, Rocket, Users, Award, Calendar } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import ynnoviaLogo from '@/assets/ynnovia-logo.png';
+import { Navbar } from '@/components/Navbar';
 import profilePhoto from '@/assets/profile-photo.png';
 
 const fadeUp = {
@@ -121,27 +120,7 @@ const SectionTitle = ({ icon: Icon, title, index }: { icon: React.ElementType; t
 const CV = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Nav */}
-      <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, type: 'spring' }}
-      >
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <motion.a href="/" className="flex items-center gap-3" whileHover={{ scale: 1.05 }}>
-              <img src={ynnoviaLogo} alt="Ynnovia" className="h-12 w-12 object-contain" />
-            </motion.a>
-            <div className="flex items-center gap-4">
-              <a href="/" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
-                <ChevronLeft className="w-4 h-4" /> Retour
-              </a>
-              <ThemeToggle />
-            </div>
-          </div>
-        </div>
-      </motion.nav>
+      <Navbar />
 
       <div className="pt-28 pb-20">
         <div className="container mx-auto px-6 lg:px-8 max-w-5xl">
