@@ -43,7 +43,7 @@ export const ModernPortfolio = () => {
                   transition: { duration: 0.3 }
                 }}
               />
-              <span className="text-lg font-bold tracking-wide">YNNOVIA</span>
+              <span className="text-lg font-bold tracking-wide bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">YNNOVIA</span>
             </motion.a>
             
             <motion.div
