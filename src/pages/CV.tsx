@@ -349,12 +349,6 @@ const CV = () => {
                     </div>
                   ))}
                 </div>
-                <Separator className="my-4" />
-                <SectionTitle icon={Globe} title="Langues" index={4} />
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex justify-between"><span>Français</span><span className="text-foreground font-medium">Courant</span></div>
-                  <div className="flex justify-between"><span>Anglais</span><span className="text-foreground font-medium">Intermédiaire</span></div>
-                </div>
               </motion.div>
             </div>
 
@@ -432,7 +426,7 @@ const CV = () => {
               </div>
             </motion.div>
 
-            {/* Education */}
+            {/* Formations & Certifications IA */}
             <motion.div
               className="rounded-2xl border border-border/50 bg-card p-8 mb-10"
               style={{ boxShadow: 'var(--shadow-card)' }}
@@ -442,7 +436,39 @@ const CV = () => {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <SectionTitle icon={GraduationCap} title="Éducation" index={6} />
+              <SectionTitle icon={Award} title="Formations & Certifications IA" index={6} />
+              <div className="space-y-6">
+                {formations.map((f, i) => (
+                  <motion.div
+                    key={i}
+                    className="relative pl-6 border-l-2 border-primary/20"
+                    custom={i}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
+                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
+                    <h3 className="font-semibold text-foreground">{f.title}</h3>
+                    <span className="text-xs text-primary font-medium flex items-center gap-1 mt-1">
+                      <Calendar className="w-3 h-3" /> {f.period}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Education */}
+            <motion.div
+              className="rounded-2xl border border-border/50 bg-card p-8 mb-10"
+              style={{ boxShadow: 'var(--shadow-card)' }}
+              custom={7}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <SectionTitle icon={GraduationCap} title="Éducation" index={7} />
               <div className="space-y-6">
                 {education.map((edu, i) => (
                   <motion.div
@@ -465,35 +491,20 @@ const CV = () => {
               </div>
             </motion.div>
 
-            {/* Formations & Certifications IA */}
+            {/* Langues */}
             <motion.div
               className="rounded-2xl border border-border/50 bg-card p-8"
               style={{ boxShadow: 'var(--shadow-card)' }}
-              custom={7}
+              custom={8}
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <SectionTitle icon={Award} title="Formations & Certifications IA" index={7} />
-              <div className="space-y-6">
-                {formations.map((f, i) => (
-                  <motion.div
-                    key={i}
-                    className="relative pl-6 border-l-2 border-primary/20"
-                    custom={i}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                  >
-                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
-                    <h3 className="font-semibold text-foreground">{f.title}</h3>
-                    <span className="text-xs text-primary font-medium flex items-center gap-1 mt-1">
-                      <Calendar className="w-3 h-3" /> {f.period}
-                    </span>
-                  </motion.div>
-                ))}
+              <SectionTitle icon={Globe} title="Langues" index={8} />
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="flex justify-between"><span>Français</span><span className="text-foreground font-medium">Courant</span></div>
+                <div className="flex justify-between"><span>Anglais</span><span className="text-foreground font-medium">Intermédiaire</span></div>
               </div>
             </motion.div>
 
