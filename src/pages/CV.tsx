@@ -29,25 +29,26 @@ const experiences = [
     ],
   },
   {
-    title: "ASTEK — Développeur Fullstack / Chef de Projets",
-    period: "2021 — 2024",
+    title: "ASTEK – Développeur Full‑Stack (Client ORANGE)",
+    period: "Sep 2021 – Juil 2024",
     items: [
-      "Migration legacy → microservices (Java/Spring Boot, Angular) → +40% performance, -60% dette technique.",
-      "Développement API pour Orange Gat'Ape → traitement 10M+ requêtes/jour.",
-      "DevOps CI/CD : GitLab CI, optimisation BDD PostgreSQL → -40% temps requêtes.",
-      "Pilotage Agile : planification sprints, rétrospectives et amélioration continue.",
-      "Cette expérience m'a donné les bases de l'industrialisation (microservices, CI/CD Docker/Kubernetes, optimisation BDD, haute dispo) que j'applique aujourd'hui à des services IA (APIs LLM, pipelines RAG).",
+      "Microservices Java 17 / Spring Boot 2.7 : conception et implémentation de 12+ services scalables (Spring Cloud, Eureka, Gateway), exposés via REST APIs (OpenAPI 3.0), intégrés dans Gat'Ape (plateforme API Orange).",
+      "CI/CD Jenkins + GitLab CI : pipelines complets (Maven, SonarQube, JUnit 5, Testcontainers) pour 50+ déploiements/mois vers OpenShift, réduction temps release de 3j → 4h.",
+      "API Reporting haute performance : 10k+ req/s, pagination Spring Data (offset/limit), cache Redis, optimisation MySQL 8 (index composites, query EXPLAIN) → -40% temps réponse (800ms → 480ms).",
+      "Observabilité stack ELK : centralisation logs 12 microservices, dashboards Kibana (latence P95, error rate), alertes Slack via Logstash pipelines.",
+      "Sécurité & conformité : OAuth2 + Keycloak, JWT validation, audit logs, respect PS93 (Orange).",
     ],
   },
   {
-    title: "GCS SESAN — Développeur JAVA / Chef de Projet Jr",
-    period: "2019 — 2021",
+    title: "GCS SESAN – Développeur Java / Chef de projets jr e‑Santé",
+    period: "Jan 2019 – Juin 2021",
     items: [
-      "Référent technique e-covid (Terr-eSanté) → coordination 5 devs en Agile.",
-      "Microservices Spring Boot : APIs RESTful haute disponibilité → 99.9% uptime, OAuth2.",
-      "Représentant client : éditeur Parsys → déploiement app TéléSanté (10K+ utilisateurs).",
-      "Solutions e-santé : architecture micro-frontend (Angular) + backend Java.",
-      "Contexte e-santé fortement réglementé (données sensibles, traçabilité) qui m'a préparé aux enjeux RGPD et sécurité des données pour les projets IA actuels.",
+      "Architecture microservices Spring Boot 2.4 : 8 services backend (Spring Data JPA/Hibernate, PostgreSQL 12), authentification Spring Security OAuth2, exposition APIs via Spring REST Controllers.",
+      "Monitoring production ELK Stack : Elasticsearch 7.10 indexation logs temps réel, Kibana dashboards (SLA 99.5%, error rate <0.5%), alertes via Logstash → PagerDuty.",
+      "Référent technique e‑covid : coordination devs, suivi backlog Jira, rédaction specs technico-fonctionnelles, gestion des applications dans les stores Android et iOS, livraison 3 releases critiques/mois sous contrainte sanitaire.",
+      "APIs REST haute dispo : contrats OpenAPI 3, Spring HATEOAS, gestion erreurs globales (@ControllerAdvice), Hystrix circuit breaker pour résilience.",
+      "Gestion cycle de vie mobile : packaging AAB/APK, soumissions Google Play Console / App Store Connect, suivi crashlytics Firebase, correctifs OTA.",
+      "Contexte réglementé : HDS hébergement, données de santé pseudonymisées, traçabilité complète (audit trails), réflexes de sécurité réutilisés pour data masking RGPD en IA.",
     ],
   },
   {
@@ -133,7 +134,7 @@ const education = [
 const formations = [
   {
     title: "Google AI Essentials – Formation IA et IA générative",
-    period: "2026 (en cours)",
+    period: "2026",
   },
   {
     title: "ML Crash Course – Google (Introduction au machine learning, Python & TensorFlow)",
@@ -185,9 +186,9 @@ const CV = () => {
       margin: [10, 10, 10, 10],
       filename: 'CV_Diakhate_Malick_Dev_IA.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, logging: false },
+      html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0, windowWidth: element.scrollWidth },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+      pagebreak: { mode: ['css', 'legacy'], avoid: '.rounded-2xl' },
     };
 
     html2pdf().set(opt).from(element).save();
