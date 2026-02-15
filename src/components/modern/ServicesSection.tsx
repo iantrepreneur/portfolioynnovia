@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import {
   Bot,
-  Shield,
+  Lightbulb,
   BarChart3,
   Workflow,
   Code2,
@@ -16,12 +16,6 @@ const services = [
     title: 'Chatbots IA & Voicebots',
     description: 'Agents conversationnels intelligents disponibles 24/7 pour vos clients',
     color: 'hsl(217, 91%, 60%)',
-  },
-  {
-    icon: Shield,
-    title: 'Cybersécurité & IA',
-    description: 'Protection avancée contre les menaces grâce au machine learning',
-    color: 'hsl(262, 83%, 58%)',
   },
   {
     icon: BarChart3,
@@ -52,6 +46,12 @@ const services = [
     title: 'Formation IA',
     description: 'Formez vos équipes à maîtriser les outils d\'intelligence artificielle',
     color: 'hsl(0, 77%, 54%)',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Conseil en IA',
+    description: 'Accompagnement stratégique pour identifier et prioriser vos cas d\'usage IA à fort impact',
+    color: 'hsl(262, 83%, 58%)',
   },
   {
     icon: Headphones,
