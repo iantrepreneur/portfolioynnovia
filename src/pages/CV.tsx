@@ -156,22 +156,14 @@ const education = [
 ];
 
 const formations = [
-  {
-    title: "Associate AI Engineer pour développeurs",
-    period: "2026",
-  },
-  {
-    title: "Google AI Essentials – Formation IA et IA générative",
-    period: "2026",
-  },
-  {
-    title: "ML Crash Course – Google (Introduction au machine learning, Python & TensorFlow)",
-    period: "2025",
-  },
-  {
-    title: "Formations Python orienté IA (complètes)",
-    period: "2025",
-  },
+  { title: "Associate AI Engineer pour développeurs (DataCamp)" },
+  { title: "Google AI Essentials (Grow with Google) – Prompt engineering, IA générative" },
+  { title: "MLOps Full Course 12h (DSwithBappy, YouTube) – CI/CD, Docker, MLflow, Kubernetes" },
+  { title: "LangChain for LLM Application Development (DeepLearning.AI, Coursera) – RAG, agents, memory" },
+  { title: "Retrieval Augmented Generation with LangChain (DataCamp) – RAG complet, évaluation Ragas" },
+  { title: "Fine-tune LLM with LoRA/QLoRA (Hugging Face, IBM) – Personnalisation modèles open-source" },
+  { title: "MLOps Specialization (DeepLearning.AI, Coursera) – Pipelines ML, monitoring, déploiement cloud" },
+  { title: "Objectif IA (OpenClassrooms) – Fondamentaux IA, éthique" },
 ];
 
 const SectionTitle = ({ icon: Icon, title, index }: { icon: React.ElementType; title: string; index: number }) => (
@@ -465,8 +457,8 @@ const CV = () => {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <SectionTitle icon={Award} title="Formations & Certifications IA" index={6} />
-              <div className="space-y-6">
+              <SectionTitle icon={Award} title="Formations IA & MLOps (2025-2026)" index={6} />
+              <div className="space-y-4">
                 {formations.map((f, i) => (
                   <motion.div
                     key={i}
@@ -477,11 +469,8 @@ const CV = () => {
                     whileInView="visible"
                     viewport={{ once: true }}
                   >
-                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
-                    <h3 className="font-semibold text-foreground">{f.title}</h3>
-                    <span className="text-xs text-primary font-medium flex items-center gap-1 mt-1">
-                      <Calendar className="w-3 h-3" /> {f.period}
-                    </span>
+                    <div className="absolute -left-[9px] top-1 w-3 h-3 rounded-full bg-primary/20 border-2 border-primary" />
+                    <h3 className="text-sm font-medium text-foreground">{f.title}</h3>
                   </motion.div>
                 ))}
               </div>
