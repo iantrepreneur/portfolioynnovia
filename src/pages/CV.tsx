@@ -52,11 +52,35 @@ const experiences = [
     ],
   },
   {
-    title: "HELEN KELLER INTERNATIONAL (HKI) — Responsable IT Santé",
-    period: "2014 — 2017",
+    title: "MEDIC MOBILE – Assistant déploiement de projets informatiques (Sénégal)",
+    period: "Avril 2017 – Sep 2017",
     items: [
-      "Gestion infrastructure IT : projets PROMIS, ARCH, VAS (50+ utilisateurs).",
-      "Déploiement plateforme suivi nutritionnel : collecte mobile + dashboard → données temps réel.",
+      "Rédaction de spécifications technico‑fonctionnelles pour de nouvelles fonctionnalités (formulaires, workflows de collecte, reporting) en lien avec les équipes produit et développement.",
+      "Réalisation de campagnes de tests fonctionnels et tests utilisateurs sur les applications mobiles et web : détection d'anomalies, qualification, suivi des corrections.",
+      "Contribution au déploiement des solutions sur le terrain : préparation des environnements, configuration initiale et support aux équipes locales lors des premières utilisations.",
+      "Participation à la documentation (guides utilisateurs, procédures de déploiement) pour faciliter la prise en main par les équipes santé.",
+    ],
+  },
+  {
+    title: "HELEN KELLER INTERNATIONAL (HKI) – Responsable M‑Health (Sénégal)",
+    period: "Mars 2014 – Jan 2016",
+    items: [
+      "Référent technique pour les projets de santé mobile (suivi nutritionnel, prévention, campagnes terrain) : interlocuteur principal entre équipes santé, partenaires techniques et terrain.",
+      "Mise en place et gestion de plateformes de collecte de données (applications mobiles et back‑office web) : administration des comptes, gestion des formulaires, contrôle qualité des données remontées.",
+      "Organisation et animation de sessions de formation pour les utilisateurs (agents de santé, superviseurs) : création de supports pédagogiques, accompagnement au changement, assistance de niveau 1 et 2.",
+      "Encadrement d'équipe (techniciens, relais communautaires) : planification des activités, suivi des indicateurs d'utilisation, remontée des besoins d'évolutions.",
+      "Contribution à la formalisation des processus métier (flux de données, procédures de saisie, validation) pour sécuriser la qualité et la fiabilité des informations collectées.",
+    ],
+  },
+  {
+    title: "INSTITUT DE RECHERCHE POUR LE DÉVELOPPEMENT (IRD) – Développeur Java / JEE (Sénégal)",
+    period: "Déc 2012 – Fév 2014",
+    items: [
+      "Développement d'applications de simulation multi-agents d'expériences de recherche en biologie et en écologie, en Java / JEE (Eclipse, JSP/Servlets, frameworks MVC).",
+      "Conception technique à partir de modèles UML (diagrammes de classes, séquences) et implémentation de web services pour l'échange de données entre systèmes.",
+      "Conception et optimisation de bases de données relationnelles (SQL) : schémas, requêtes, procédures stockées, intégrité et performance.",
+      "Participation aux phases de tests, validation et mise en production des applications, avec rédaction de la documentation technique associée.",
+      "Auteur d'un article scientifique présenté au Colloque Africain de Recherche en Informatique et Mathématiques Appliquées (CARI'14), valorisant les résultats obtenus avec les outils développés.",
     ],
   },
 ];
@@ -132,6 +156,10 @@ const education = [
 ];
 
 const formations = [
+  {
+    title: "Associate AI Engineer pour développeurs",
+    period: "2026",
+  },
   {
     title: "Google AI Essentials – Formation IA et IA générative",
     period: "2026",
