@@ -135,12 +135,31 @@ const skillsDev = {
   "Sécurité": ["OAuth2", "JWT", "Spring Security", "Keycloak", "Gestion de secrets", "Bonnes pratiques RGPD"],
 };
 
-const skillsGestion = [
-  "Pilotage de projets IA & automatisation (roadmap, backlog, sprints, KPIs)",
-  "Cadrage de cas d'usage IA avec les métiers (support, marketing, opérations, e-santé)",
-  "Rédaction de spécifications technico-fonctionnelles orientées LLM / RAG",
-  "Formation et accompagnement d'équipes non techniques à l'usage d'outils IA",
-];
+const gestionProjet = {
+  methodologies: {
+    title: "Méthodologies & Outils",
+    items: [
+      "Agile/Scrum/Kanban : Pilotage de sprints (2 semaines), cérémonies complètes (daily, planning, rétrospectives), définition et suivi des KPIs (objectifs OKR, taux de complétion).",
+      "Outils : Jira (gestion backlog, roadmaps, burndown charts), Confluence (spécifications, documentation), Trello/Asana (suivi opérationnel), GitHub Projects (intégration dev).",
+    ],
+  },
+  pilotage: {
+    title: "Pilotage de projets IA",
+    items: [
+      "Conception et roadmap : Élaboration de plans de développement IA (6–12 mois) avec priorisation des cas d'usage (MoSCoW, impact/ROI), arbitrage technique/métier.",
+      "Cadrage cas d'usage IA : Ateliers métiers pour identifier les goulots d'étranglement (support, marketing, CRM, e-santé) et traduire en architectures LLM/RAG/agents.",
+      "Spécifications technico‑fonctionnelles : Rédaction de cahiers des charges détaillés pour solutions LLM (prompts, pipelines RAG, APIs, métriques de succès, SLA).",
+    ],
+  },
+  accompagnement: {
+    title: "Accompagnement & adoption",
+    items: [
+      "Formation équipes métiers : Sessions pratiques (20+ personnes formées) sur l'utilisation de copilotes IA, agents, dashboards RAG, et workflows automatisés (n8n, HubSpot).",
+      "Change management : Accompagnement au changement, création de guides utilisateurs, support niveau 1–2, suivi adoption (taux d'utilisation, feedback).",
+      "Transfert de compétences techniques : Formation et accompagnement d'équipes non techniques à l'usage d'outils IA.",
+    ],
+  },
+};
 
 const education = [
   {
@@ -361,12 +380,19 @@ const CV = () => {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <SectionTitle icon={Award} title="Gestion de Projet" index={3} />
-                <div className="space-y-2 mb-4">
-                  {skillsGestion.map((s) => (
-                    <div key={s} className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                      <p className="text-sm text-muted-foreground">{s}</p>
+                <SectionTitle icon={Award} title="Gestion de projet IA & Digital" index={3} />
+                <div className="space-y-5">
+                  {Object.values(gestionProjet).map((section) => (
+                    <div key={section.title}>
+                      <h4 className="text-sm font-semibold text-foreground mb-2">{section.title}</h4>
+                      <div className="space-y-2">
+                        {section.items.map((item) => (
+                          <div key={item} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                            <p className="text-sm text-muted-foreground">{item}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
