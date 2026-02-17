@@ -87,34 +87,44 @@ const experiences = [
 
 const projects = [
   {
-    title: "Support omnicanal augmenté par IA",
+    title: "Postelma – Plateforme Marketing Media IA",
     period: "Freelance (2024–2025)",
-    description: "Centralisation des messages (email, réseaux sociaux, WhatsApp, chat) et mise en place d'agents IA spécialisés (support, marketing) alimentés par un RAG sur la base de connaissances client. Orchestration LangChain + OpenAI/Claude, vector DB Chroma/Pinecone, intégration dans HubSpot et workflows n8n. Réduction du temps de réponse et du volume de tickets manuels.",
+    description: "Publication multi-plateformes (Facebook, X, LinkedIn), génération d'assets visuels par IA, lead generation avec scraping et enrichissement GPT-4. 200+ posts/mois automatisés, -70% temps de production.",
   },
   {
-    title: "Pipeline marketing automatisé avec IA",
+    title: "Hub Support Omnicanal IA",
     period: "Freelance (2024–2025)",
-    description: "Transcription automatique des appels (API speech-to-text), extraction d'informations clés, qualification/score des leads dans HubSpot et génération de messages de suivi personnalisés (LLM). Orchestration via Make/n8n et scripts Python, monitoring des taux de conversion et itérations sur les prompts.",
+    description: "Centralisation multi-canaux (WhatsApp, Messenger, email, chat web), routage intelligent par IA, réponses automatiques avec RAG sur base documentaire vectorisée. -50% temps de réponse, 60% d'auto-résolution.",
   },
   {
-    title: "Plateforme podcast IA – clone NotebookLM",
+    title: "CRM IA Automatisé (HubSpot/TwentyCRM)",
     period: "Freelance (2024–2025)",
-    description: "Développement d'une plateforme permettant de créer des podcasts à partir de contenus textuels/vidéo : ingestion, segmentation, génération de scripts, résumés et titres via LLM, puis diffusion multicanal. Stack : Python/FastAPI, APIs LLM, stockage cloud.",
+    description: "Gestion automatisée des documents (devis, contrats, attestations), scoring intelligent des leads, enrichissement de données par IA, workflows personnalisés. -30% charge administrative, +60% taux de conversion.",
   },
   {
-    title: "Stack IA open-source & Fine-tuning LLM Wolof",
+    title: "Clone NotebookLM – Podcast IA",
     period: "Freelance (2024–2025)",
-    description: "Mise en place d'une stack IA open-source (Ollama / modèles HF + Chroma) pour expérimenter des solutions RAG et des agents IA indépendants du cloud public. Préparation de corpus en Wolof, nettoyage / étiquetage et expérimentation de fine-tuning LoRA sur un modèle open-source, avec évaluation qualitative sur des cas d'usage locaux.",
+    description: "Analyse automatique de documents (PDF, web, vidéos), création de scripts conversationnels, synthèse vocale multi-voix naturelle, interface de discussion interactive. Génération de podcasts en 5 min.",
   },
   {
-    title: "CRM école automatisé",
-    period: "Freelance (2024)",
-    description: "Automatisation complète de la génération de documents et du suivi étudiants via agents IA et workflows n8n → 100% automatisation admin. Stack : n8n, OpenAI API, PostgreSQL.",
+    title: "ADIA – Plateforme de Création d'Agents IA",
+    period: "Freelance (2024–2025)",
+    description: "Plateforme de création d'agents IA en local (RH, Marketing, Support…) garantissant la confidentialité totale des données. Déploiement on-premise avec modèles open source. 100% données locales.",
   },
   {
-    title: "Postelma – Publication multi-plateformes IA",
-    period: "Freelance (2024)",
-    description: "Génération automatique d'assets visuels et textuels par IA, publication multi-plateformes orchestrée par agents IA → 200+ posts/mois, -70% temps de production. Stack : LangChain, OpenAI, n8n, Make.",
+    title: "ERPIA – ERP Intelligent Modulaire",
+    period: "Freelance (2024–2025)",
+    description: "Continuité de Postelma avec ajout de modules Comptabilité, Stock, Vente. Solution ERP complète intégrant l'IA pour automatiser les processus métiers et centraliser la gestion d'entreprise. 6+ modules intégrés.",
+  },
+  {
+    title: "MiniHeroes – Contenu Éducatif pour Enfants",
+    period: "Freelance (2024–2025)",
+    description: "Plateforme de création de contenu éducatif où l'enfant est l'acteur principal de ses histoires. Apprentissage ludique personnalisé par IA avec génération d'images et synthèse vocale.",
+  },
+  {
+    title: "SAVIA – Agent Vocal IA Service Client",
+    period: "Freelance (2024–2025)",
+    description: "Clone de VAPI : plateforme pour configurer un agent IA vocal qui répond aux appels clients, qualifie les demandes et route vers le bon service. Configuration no-code, support vocal 24/7.",
   },
 ];
 
@@ -135,30 +145,13 @@ const skillsDev = {
   "Sécurité": ["OAuth2", "JWT", "Spring Security", "Keycloak", "Gestion de secrets", "Bonnes pratiques RGPD"],
 };
 
-const gestionProjet = {
-  methodologies: {
-    title: "Méthodologies & Outils",
-    items: [
-      "Agile/Scrum/Kanban : Pilotage de sprints (2 semaines), cérémonies complètes (daily, planning, rétrospectives), définition et suivi des KPIs (objectifs OKR, taux de complétion).",
-      "Outils : Jira (gestion backlog, roadmaps, burndown charts), Confluence (spécifications, documentation), Trello/Asana (suivi opérationnel), GitHub Projects (intégration dev).",
-    ],
-  },
-  pilotage: {
-    title: "Pilotage de projets IA",
-    items: [
-      "Conception et roadmap : Élaboration de plans de développement IA (6–12 mois) avec priorisation des cas d'usage (MoSCoW, impact/ROI), arbitrage technique/métier.",
-      "Cadrage cas d'usage IA : Ateliers métiers pour identifier les goulots d'étranglement (support, marketing, CRM, e-santé) et traduire en architectures LLM/RAG/agents.",
-      "Spécifications technico‑fonctionnelles : Rédaction de cahiers des charges détaillés pour solutions LLM (prompts, pipelines RAG, APIs, métriques de succès, SLA).",
-    ],
-  },
-  accompagnement: {
-    title: "Accompagnement & adoption",
-    items: [
-      "Formation équipes métiers : Sessions pratiques (20+ personnes formées) sur l'utilisation de copilotes IA, agents, dashboards RAG, et workflows automatisés (n8n, HubSpot).",
-      "Change management : Accompagnement au changement, création de guides utilisateurs, support niveau 1–2, suivi adoption (taux d'utilisation, feedback).",
-      "Transfert de compétences techniques : Formation et accompagnement d'équipes non techniques à l'usage d'outils IA.",
-    ],
-  },
+const skillsGestion = {
+  "Méthodologies": ["Agile/Scrum/Kanban", "Sprints 2 semaines", "Daily/Planning/Rétro", "KPIs & OKR"],
+  "Outils Projet": ["Jira", "Confluence", "Trello/Asana", "GitHub Projects", "Roadmaps & Burndown"],
+  "Pilotage IA": ["Roadmap IA 6–12 mois", "Priorisation MoSCoW/ROI", "Cadrage cas d'usage LLM/RAG", "Arbitrage technique/métier"],
+  "Spécifications": ["Cahiers des charges LLM", "Pipelines RAG", "Métriques & SLA", "Specs technico-fonctionnelles"],
+  "Accompagnement": ["Formation équipes (20+ pers.)", "Change management", "Guides utilisateurs", "Support niveau 1–2"],
+  "Adoption": ["Suivi taux d'utilisation", "Transfert compétences", "Copilotes IA & dashboards", "Workflows n8n/HubSpot"],
 };
 
 const education = [
@@ -234,7 +227,7 @@ const CV = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
 
       <div className="pt-28 pb-20">
@@ -381,21 +374,9 @@ const CV = () => {
                 viewport={{ once: true }}
               >
                 <SectionTitle icon={Award} title="Gestion de projet IA & Digital" index={3} />
-                <div className="space-y-5">
-                  {Object.values(gestionProjet).map((section) => (
-                    <div key={section.title}>
-                      <h4 className="text-sm font-semibold text-foreground mb-2">{section.title}</h4>
-                      <div className="space-y-2">
-                        {section.items.map((item) => (
-                          <div key={item} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                            <p className="text-sm text-muted-foreground">{item}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                {Object.entries(skillsGestion).map(([category, skills]) => (
+                  <SkillCategory key={category} category={category} skills={skills} />
+                ))}
               </motion.div>
             </div>
 
