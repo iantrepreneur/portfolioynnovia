@@ -142,6 +142,8 @@ const skillsDev = {
   "Frontend": ["Angular", "React", "Next.js", "Interfaces copilotes & dashboards IA"],
   "Data": ["MySQL", "PostgreSQL", "MongoDB", "Pandas", "NumPy", "Préparation données IA"],
   "DevOps / MLOps": ["Docker", "Kubernetes (bases)", "CI/CD (GitLab, GitHub Actions)", "Logs & métriques (latence, coûts LLM)"],
+  "Vibe Coding": ["Claude Code", "Cursor", "GitHub Copilot", "Lovable", "opencode"],
+  "Méthodologies IA Coding": ["Spec Kit (GitHub)", "BMAD Method (Agentic Agile)", "OpenSpec"],
   "Sécurité": ["OAuth2", "JWT", "Spring Security", "Keycloak", "Gestion de secrets", "Bonnes pratiques RGPD"],
 };
 
@@ -190,7 +192,7 @@ const SectionTitle = ({ icon: Icon, title, index }: { icon: React.ElementType; t
     <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
       <Icon className="w-5 h-5" />
     </div>
-    <h2 className="text-xl md:text-2xl font-bold text-foreground tracking-tight">{title}</h2>
+    <h2 className="text-xl md:text-2xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Inter', 'system-ui', sans-serif" }}>{title}</h2>
   </motion.div>
 );
 
@@ -227,7 +229,7 @@ const CV = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-background text-foreground font-sans" style={{ fontFamily: "'Inter', 'system-ui', sans-serif" }}>
       <Navbar />
 
       <div className="pt-28 pb-20">
