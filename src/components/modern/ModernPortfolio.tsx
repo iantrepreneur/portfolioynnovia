@@ -41,8 +41,8 @@ export const ModernPortfolio = () => {
                 Bénéficiez d'un Audit IA Gratuit
               </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-6 text-lg">
-                Nous analysons vos processus et identifions les opportunités d'automatisation IA. 
-                Recevez un plan d'action personnalisé en 30 minutes.
+                Nous analysons vos activités et identifions les opportunités d'intégration de l'IA dans vos processus métiers. 
+                Recevez un plan d'action personnalisé.
               </p>
               <span className="inline-flex items-center gap-2 text-primary font-semibold group-hover:underline text-lg">
                 Réserver mon audit gratuit →
