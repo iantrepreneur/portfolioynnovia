@@ -10,6 +10,7 @@ import { Navbar } from '@/components/Navbar';
 import { applications } from '@/data/applications';
 import { automations } from '@/data/automations';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { YouTubePlayer, getYouTubeThumbnail, getYouTubeId } from '@/components/YouTubePlayer';
 
 type TabKey = 'plateforme' | 'automatisations';
 
@@ -162,7 +163,7 @@ export default function ProjetsClients() {
                         onClick={() => setSelectedProject(project)}
                       >
                         <img
-                          src={project.image}
+                          src={project.youtubeUrl ? getYouTubeThumbnail(project.youtubeUrl) : project.image}
                           alt={project.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
@@ -370,12 +371,10 @@ export default function ProjetsClients() {
             <div>
               <div className="relative aspect-video bg-black">
                 {selectedProject.youtubeUrl ? (
-                  <iframe
-                    className="w-full h-full"
-                    src={`https://www.youtube.com/embed/${selectedProject.youtubeUrl.split('/').pop()?.split('?')[0]}`}
+                  <YouTubePlayer
+                    videoId={getYouTubeId(selectedProject.youtubeUrl)}
                     title={selectedProject.name}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+                    playbackRate={1.5}
                   />
                 ) : (
                   <>
