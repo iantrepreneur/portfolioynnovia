@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Play, ChevronDown, ChevronUp, Clock, Zap, ExternalLink } from 'lucide-react';
@@ -23,6 +23,7 @@ interface ProjectModalData {
   iconColor: string;
   categoryColor: string;
   image: string;
+  youtubeUrl?: string;
 }
 
 const categories = ['Toutes', 'Communication', 'Finance', 'Marketing', 'CRM & Marketing', 'Infrastructure', 'Intelligence Artificielle'];
@@ -33,6 +34,10 @@ export default function ProjetsClients() {
   const [expandedCards, setExpandedCards] = useState<Set<number | string>>(new Set());
   const [selectedCategory, setSelectedCategory] = useState('Toutes');
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
 
   const toggleExpand = (id: number | string) => {
     setExpandedCards(prev => {
@@ -163,16 +168,21 @@ export default function ProjetsClients() {
                         />
                         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
                           <motion.div
-                            className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_30px_hsl(217,91%,60%,0.5)]"
+                            className={`w-16 h-16 rounded-full backdrop-blur-sm flex items-center justify-center shadow-[0_0_30px_hsl(217,91%,60%,0.5)] ${project.youtubeUrl ? 'bg-red-600/90' : 'bg-primary/90'}`}
                             whileHover={{ scale: 1.15 }}
                             whileTap={{ scale: 0.95 }}
                           >
-                            <Play className="w-7 h-7 text-primary-foreground ml-1" />
+                            <Play className="w-7 h-7 text-white ml-1" />
                           </motion.div>
                         </div>
                         <Badge className={`absolute top-4 left-4 ${project.categoryColor} backdrop-blur-sm`}>
                           {project.category}
                         </Badge>
+                        {project.youtubeUrl && (
+                          <span className="absolute top-4 right-4 px-2 py-1 rounded-full bg-red-600 text-white text-xs font-bold">
+                            Démo
+                          </span>
+                        )}
                       </div>
 
                       <div className="p-6">
@@ -359,20 +369,28 @@ export default function ProjetsClients() {
           {selectedProject && (
             <div>
               <div className="relative aspect-video bg-black">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    className="w-20 h-20 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_40px_hsl(217,91%,60%,0.6)]"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Play className="w-9 h-9 text-primary-foreground ml-1" />
-                  </motion.div>
-                </div>
+                {selectedProject.youtubeUrl ? (
+                  <iframe
+                    className="w-full h-full"
+                    src={`https://www.youtube.com/embed/${selectedProject.youtubeUrl.split('/').pop()?.split('?')[0]}`}
+                    title={selectedProject.name}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <>
+                    <img
+                      src={selectedProject.image}
+                      alt={selectedProject.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_40px_hsl(217,91%,60%,0.6)]">
+                        <Play className="w-9 h-9 text-primary-foreground ml-1" />
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
 
               <div className="p-6 space-y-5">
