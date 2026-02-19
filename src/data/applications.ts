@@ -1,4 +1,4 @@
-import { LucideIcon, Share2, MessageCircle, Target, Mic, Shield, Layers, BookHeart, Phone } from 'lucide-react';
+import { LucideIcon, Share2, MessageCircle, Target, Mic, Shield, Layers, BookHeart, Phone, BarChart2, Bot, Tv } from 'lucide-react';
 import postelmaImg from '@/assets/applications/postelma.jpg';
 import supportHubImg from '@/assets/applications/support-hub.jpg';
 import crmAiImg from '@/assets/applications/crm-ai.jpg';
@@ -20,6 +20,7 @@ export interface Application {
   categoryColor: string;
   buttonText: string;
   image: string;
+  youtubeUrl?: string;
 }
 
 export const applications: Application[] = [
@@ -34,7 +35,8 @@ export const applications: Application[] = [
     iconColor: "text-blue-500",
     categoryColor: "bg-blue-500/10",
     buttonText: "Voir le projet",
-    image: postelmaImg
+    image: postelmaImg,
+    youtubeUrl: "https://youtu.be/FTgizWf6_Bg"
   },
   {
     id: 2,
@@ -73,7 +75,8 @@ export const applications: Application[] = [
     iconColor: "text-cyan-500",
     categoryColor: "bg-cyan-500/10",
     buttonText: "Voir le projet",
-    image: podcastAiImg
+    image: podcastAiImg,
+    youtubeUrl: "https://youtu.be/AstoAkl2P54"
   },
   {
     id: 5,
@@ -126,5 +129,89 @@ export const applications: Application[] = [
     categoryColor: "bg-amber-500/10",
     buttonText: "Voir le projet",
     image: saviaImg
+  },
+  {
+    id: 9,
+    name: "Fine-Tuning Langue Locale",
+    category: "Intelligence Artificielle",
+    description: "Solution de fine-tuning de modèles de langage sur des langues locales et dialectes sous-représentés. Entraînement personnalisé sur vos corpus métier pour obtenir un modèle IA qui parle votre langue, comprend vos expressions et répond avec précision à votre audience locale.",
+    stack: ["Python", "Hugging Face", "LoRA", "FastAPI", "Docker", "GPU Cloud"],
+    metrics: ["+85% précision langue locale", "Corpus personnalisé", "Déploiement on-premise"],
+    icon: Mic,
+    iconColor: "text-orange-500",
+    categoryColor: "bg-orange-500/10",
+    buttonText: "Voir le projet",
+    image: podcastAiImg,
+    youtubeUrl: "https://youtu.be/zczDoInWGbQ"
+  },
+  {
+    id: 10,
+    name: "Assistant Personnel IA",
+    category: "Intelligence Artificielle",
+    description: "Assistant IA personnel ultra-personnalisé qui apprend vos habitudes, gère votre agenda, répond à vos emails, priorise vos tâches et vous accompagne au quotidien. Connecté à vos outils (Gmail, Calendar, Notion, Slack), il automatise les tâches répétitives pour vous laisser vous concentrer sur l'essentiel.",
+    stack: ["GPT-4", "LangChain", "React", "FastAPI", "OAuth2", "Zapier"],
+    metrics: ["-3h/jour de tâches", "Intégration 10+ outils", "100% personnalisable"],
+    icon: Bot,
+    iconColor: "text-sky-500",
+    categoryColor: "bg-sky-500/10",
+    buttonText: "Voir le projet",
+    image: adiaImg,
+    youtubeUrl: "https://youtu.be/8hqF_W1KTss"
+  },
+  {
+    id: 11,
+    name: "Visualisation de Données IA",
+    category: "Intelligence Artificielle",
+    description: "Tableau de bord intelligent de visualisation et analyse de données en temps réel. Importez vos données (CSV, API, base de données) et obtenez instantanément des graphiques interactifs, des insights générés par IA et des rapports automatisés. Posez des questions en langage naturel et obtenez des réponses visuelles.",
+    stack: ["React", "D3.js", "FastAPI", "GPT-4", "PostgreSQL", "WebSocket"],
+    metrics: ["Analyse en temps réel", "Questions langage naturel", "Rapports automatisés"],
+    icon: BarChart2,
+    iconColor: "text-teal-500",
+    categoryColor: "bg-teal-500/10",
+    buttonText: "Voir le projet",
+    image: crmAiImg,
+    youtubeUrl: "https://youtu.be/DZ9NAnV_WiY"
+  },
+  {
+    id: 12,
+    name: "Agent IA de Support Client",
+    category: "Communication",
+    description: "Agent IA conversationnel de support client capable de gérer l'intégralité des demandes entrantes en autonomie. Comprend le contexte, accède à la base de connaissance, escalade intelligemment vers un humain si nécessaire. Disponible 24/7 sur web, WhatsApp et email.",
+    stack: ["GPT-4", "RAG", "Pinecone", "FastAPI", "WhatsApp API", "React"],
+    metrics: ["80% auto-résolution", "Support 24/7", "-60% coût support"],
+    icon: MessageCircle,
+    iconColor: "text-indigo-500",
+    categoryColor: "bg-indigo-500/10",
+    buttonText: "Voir le projet",
+    image: supportHubImg,
+    youtubeUrl: "https://youtu.be/gLgpJdhhMvo"
+  },
+  {
+    id: 13,
+    name: "Pub IA - Ferme Moderne",
+    category: "Marketing",
+    description: "Création de publicités vidéo et visuelles par IA pour une ferme moderne. Génération automatique de scripts publicitaires, voix-off naturelle, montage vidéo automatisé et adaptation aux formats de chaque plateforme (Instagram Reels, TikTok, YouTube). Un contenu publicitaire professionnel en quelques minutes.",
+    stack: ["Stable Diffusion", "ElevenLabs", "RunwayML", "GPT-4", "FFmpeg"],
+    metrics: ["-90% coût production", "Pub en 10 min", "Multi-formats"],
+    icon: Tv,
+    iconColor: "text-green-600",
+    categoryColor: "bg-green-600/10",
+    buttonText: "Voir le projet",
+    image: postelmaImg,
+    youtubeUrl: "https://youtu.be/WFbZtk26KSM"
+  },
+  {
+    id: 14,
+    name: "Pub IA - Adja's Boutique",
+    category: "Marketing",
+    description: "Campagne publicitaire complète générée par IA pour Adja's Boutique, une boutique de mode. Création de visuels produit IA, scripts de présentation, voix-off en plusieurs langues, adaptation aux codes visuels de la mode africaine et aux tendances actuelles des réseaux sociaux.",
+    stack: ["Stable Diffusion", "ElevenLabs", "RunwayML", "GPT-4", "Canva API"],
+    metrics: ["+200% engagement", "Visuels IA haute qualité", "Multi-langues"],
+    icon: Tv,
+    iconColor: "text-rose-500",
+    categoryColor: "bg-rose-500/10",
+    buttonText: "Voir le projet",
+    image: miniheroesImg,
+    youtubeUrl: "https://youtu.be/pJsScKCjRKs"
   }
 ];
